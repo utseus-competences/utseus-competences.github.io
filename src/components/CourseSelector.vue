@@ -32,9 +32,10 @@
       <div 
         v-for="course in filteredCourses" 
         :key="course.id"
-        :class="['course-item', 'tooltip', { selected: isSelected(course.id) }]"
+        :class="['course-item', { selected: isSelected(course.id) }]"
         @click="toggleCourse(course.id)"
-        :data-tooltip="getCourseTooltip(course)"
+        @mouseenter="(e) => showTooltip(e.target, getCourseTooltip(course))"
+        @mouseleave="hideTooltip"
       >
         <div class="course-checkbox">
           <input 
@@ -54,8 +55,9 @@
                 v-for="(value, bc) in course.bcContribution" 
                 :key="bc"
                 v-if="value > 0"
-                class="bc-tag tooltip"
-                :data-tooltip="getBCDescription(bc)"
+                class="bc-tag"
+                @mouseenter="(e) => showTooltip(e.target, getBCDescription(bc))"
+                @mouseleave="hideTooltip"
                 :style="{ backgroundColor: getBCColor(bc), opacity: 0.15 + (value * 0.25) }"
               >
                 {{ bc }}:{{ value }}
@@ -71,6 +73,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useAppStore } from '../stores/appStore'
+import { showTooltip, hideTooltip } from '../composables/useTooltip.js'
 
 const store = useAppStore()
 const currentLevel = ref('all')

@@ -21,7 +21,9 @@
           <div class="career-focus">
             <strong>Core Focus:</strong>
             <div class="focus-badges">
-              <span v-for="bc in career.coreFocus.slice(0, 3)" :key="bc" class="focus-badge tooltip" :data-tooltip="getBCDescription(bc)">
+              <span v-for="bc in career.coreFocus.slice(0, 3)" :key="bc" class="focus-badge"
+                    @mouseenter="(e) => showTooltip(e.currentTarget, getBCDescription(bc))"
+                    @mouseleave="hideTooltip">
                 {{ bc }}
               </span>
             </div>
@@ -30,7 +32,9 @@
           <div class="career-weights">
             <div v-for="bc in bcList" :key="bc"
                  class="weight-item">
-              <span class="weight-bc tooltip" :data-tooltip="getBCDescription(bc)">{{ bc }}</span>
+              <span class="weight-bc"
+                    @mouseenter="(e) => showTooltip(e.currentTarget, getBCDescription(bc))"
+                    @mouseleave="hideTooltip">{{ bc }}</span>
               <div class="weight-bar">
                 <div class="weight-fill" :style="{ width: Math.min(100, (career.bcWeights[bc] || 0) / 12 * 100) + '%' }"></div>
               </div>
@@ -50,6 +54,7 @@
 <script setup>
 import { useAppStore } from '../stores/appStore'
 import { useRouter } from 'vue-router'
+import { showTooltip, hideTooltip } from '../composables/useTooltip.js'
 
 const store = useAppStore()
 const router = useRouter()

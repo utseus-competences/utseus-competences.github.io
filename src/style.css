@@ -229,10 +229,12 @@ select:focus {
 
 .tooltip::after {
   content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
+  position: fixed;
+  bottom: auto;
+  left: auto;
+  top: auto;
+  right: auto;
+  transform: none;
   padding: 0.5rem 0.75rem;
   background: rgba(44, 62, 80, 0.95);
   color: white;
@@ -241,12 +243,13 @@ select:focus {
   white-space: pre-line;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.15s;
-  z-index: 1000;
+  transition: opacity 0.15s, visibility 0.15s;
+  z-index: 9999;
   max-width: 320px;
   min-width: 220px;
   line-height: 1.4;
   text-align: left;
+  pointer-events: none;
 }
 
 .tooltip:hover::after {
@@ -265,4 +268,30 @@ select:focus {
   left: 100%;
   top: 50%;
   transform: translateY(-50%) translateX(4px);
+}
+
+/* Disable old CSS tooltips when using global tooltip system */
+[v-tooltip]::after,
+[data-tooltip]::after {
+  display: none !important;
+}
+
+/* Global Tooltip - appended to body, not constrained by parents */
+.global-tooltip {
+  position: fixed;
+  background: rgba(44, 62, 80, 0.95);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  max-width: 320px;
+  min-width: 180px;
+  text-align: left;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

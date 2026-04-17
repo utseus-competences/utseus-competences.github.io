@@ -51,7 +51,9 @@
               <th @click="handleSort('name')" class="sortable">Course Name{{ getSortIndicator('name') }}</th>
               <th @click="handleSort('level')" class="center sortable">Level{{ getSortIndicator('level') }}</th>
               <th @click="handleSort('credits')" class="center sortable">Credits{{ getSortIndicator('credits') }}</th>
-              <th v-for="bc in displayedBCs" :key="bc" @click="handleSort(bc)" class="center bc-col tooltip sortable" :data-tooltip="getBCDescription(bc)">
+              <th v-for="bc in displayedBCs" :key="bc" @click="handleSort(bc)" class="center bc-col sortable"
+                  @mouseenter="(e) => showTooltip(e.currentTarget, getBCDescription(bc))"
+                  @mouseleave="hideTooltip">
                 {{ bc }}{{ getSortIndicator(bc) }}
               </th>
               <th class="center">Actions</th>
@@ -67,15 +69,20 @@
                 </div>
               </td>
               <td class="center">
-                <span :class="['level-badge', course.level, 'tooltip']" :data-tooltip="course.level === 'undergraduate' ? 'Undergraduate (B3/B4)' : 'Graduate (Master)'">
+                <span :class="['level-badge', course.level]" 
+                      :key="course.id + '-level'"
+                      @mouseenter="(e) => showTooltip(e.currentTarget, course.level === 'undergraduate' ? 'Undergraduate (B3/B4)' : 'Graduate (Master)')"
+                      @mouseleave="hideTooltip">
                   {{ course.level === 'undergraduate' ? 'UG' : 'GR' }}
                 </span>
               </td>
               <td class="center">{{ course.credits }}</td>
               <td v-for="bc in displayedBCs" :key="bc" class="center">
                 <span v-if="course.bcContribution[bc]" 
-                      :class="['bc-value', 'level-' + course.bcContribution[bc], 'tooltip']"
-                      :data-tooltip="bc + ': ' + getBCDescription(bc) + ' (Level ' + course.bcContribution[bc] + ')'">
+                      :class="['bc-value', 'level-' + course.bcContribution[bc]]"
+                      :key="course.id + '-' + bc"
+                      @mouseenter="(e) => showTooltip(e.currentTarget, bc + ': ' + getBCDescription(bc) + ' (Level ' + course.bcContribution[bc] + ')')"
+                      @mouseleave="hideTooltip">
                   {{ course.bcContribution[bc] }}
                 </span>
                 <span v-else class="bc-value empty">-</span>
@@ -106,6 +113,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useAppStore } from '../stores/appStore'
+import { showTooltip, hideTooltip } from '../composables/useTooltip.js'
 
 const store = useAppStore()
 

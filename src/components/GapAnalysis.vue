@@ -30,7 +30,9 @@
           <div v-for="(data, bc) in store.gapAnalysis" :key="bc" 
                :class="['bc-item', data.status]">
             <div class="bc-header">
-              <span class="bc-name tooltip" :data-tooltip="getBCDescription(bc)">{{ bc }} - {{ getBCName(bc) }}</span>
+              <span class="bc-name" 
+                    @mouseenter="(e) => showTooltip(e.target, getBCDescription(bc))"
+                    @mouseleave="hideTooltip">{{ bc }} - {{ getBCName(bc) }}</span>
               <span :class="['bc-status', data.status]">{{ data.status }}</span>
             </div>
             <div class="bc-bar">
@@ -53,7 +55,9 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useAppStore } from '../stores/appStore'
+import { showTooltip, hideTooltip } from '../composables/useTooltip.js'
 
 const store = useAppStore()
 

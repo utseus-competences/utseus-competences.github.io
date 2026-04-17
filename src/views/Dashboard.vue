@@ -32,7 +32,9 @@
               <div class="career-details-focus">
                 <strong>Core Focus:</strong>
                 <div class="focus-tags">
-                  <span v-for="bc in store.selectedCareer.coreFocus" :key="bc" class="focus-tag tooltip" :data-tooltip="getBCDescription(bc)">
+                  <span v-for="bc in store.selectedCareer.coreFocus" :key="bc" class="focus-tag"
+                        @mouseenter="(e) => showTooltip(e.target, getBCDescription(bc))"
+                        @mouseleave="hideTooltip">
                     {{ bc }} - {{ getBCName(bc) }}
                   </span>
                 </div>
@@ -74,6 +76,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useAppStore } from '../stores/appStore'
+import { showTooltip, hideTooltip } from '../composables/useTooltip.js'
 import CareerSelector from '../components/CareerSelector.vue'
 import CourseSelector from '../components/CourseSelector.vue'
 import BCRadarChart from '../components/BCRadarChart.vue'

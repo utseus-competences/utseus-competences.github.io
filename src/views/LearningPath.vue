@@ -52,7 +52,9 @@
               <div class="step-meta">
                 <span class="credits">{{ step.credits }} credits</span>
                 <span class="level">{{ step.level === 'undergraduate' ? 'Undergraduate (B3/B4)' : 'Graduate (Master)' }}</span>
-                <span class="primary-bc tooltip" :data-tooltip="getBCDescription(step.primaryBC)">Focus: {{ step.primaryBC }}</span>
+                <span class="primary-bc" 
+                      @mouseenter="(e) => showTooltip(e.target, getBCDescription(step.primaryBC))"
+                      @mouseleave="hideTooltip">Focus: {{ step.primaryBC }}</span>
               </div>
               <p class="step-reason">
                 This course strengthens <strong>{{ step.primaryBC }}</strong>, 
@@ -61,8 +63,9 @@
               <div class="bc-contributions">
                 <span v-for="(value, bc) in step.bcContribution" :key="bc" 
                       v-if="value > 0"
-                      class="bc-tag tooltip"
-                      :data-tooltip="getBCDescription(bc)">
+                      class="bc-tag"
+                      @mouseenter="(e) => showTooltip(e.target, getBCDescription(bc))"
+                      @mouseleave="hideTooltip">
                   {{ bc }}: +{{ value }}
                 </span>
               </div>
@@ -92,6 +95,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useAppStore } from '../stores/appStore'
+import { showTooltip, hideTooltip } from '../composables/useTooltip.js'
 
 const store = useAppStore()
 

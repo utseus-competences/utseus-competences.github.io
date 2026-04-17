@@ -11,7 +11,9 @@
            :class="['recommendation-item', rec.status]">
         <div class="rec-header">
           <div class="rec-bc">
-            <span class="bc-label tooltip" :data-tooltip="getBCDescription(rec.bc)">{{ rec.bc }}</span>
+            <span class="bc-label" 
+                  @mouseenter="(e) => showTooltip(e.target, getBCDescription(rec.bc))"
+                  @mouseleave="hideTooltip">{{ rec.bc }}</span>
             <span class="gap-badge">Gap: {{ rec.gap }}</span>
           </div>
           <span :class="['status-badge', rec.status]">{{ rec.status }}</span>
@@ -42,7 +44,9 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useAppStore } from '../stores/appStore'
+import { showTooltip, hideTooltip } from '../composables/useTooltip.js'
 
 const store = useAppStore()
 
