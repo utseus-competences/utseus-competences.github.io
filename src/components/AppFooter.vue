@@ -3,11 +3,9 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>UTSEUS</h3>
-          <p>l'Université de Technologie Sino-Europenne<br>Université de Shanghai</p>
-        </div>
-        <div class="footer-section">
           <div class="institutions-links">
+            <a href="https://utseus.shu.edu.cn/" target="_blank">UTSEUS</a>
+            <span class="separator">•</span>
             <a href="https://www.utc.fr/" target="_blank">UTC</a>
             <span class="separator">•</span>
             <a href="https://www.utt.fr/" target="_blank">UTT</a>
@@ -34,9 +32,8 @@
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
+  display: flex;
+  justify-content: center;
   margin-bottom: 1.5rem;
 }
 
@@ -58,6 +55,7 @@
 .institutions-links {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
