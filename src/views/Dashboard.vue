@@ -14,9 +14,7 @@
             <CareerSelector v-model="selectedCareer" />
           </div>
 
-          <div class="card course-card">
-            <CourseSelector />
-          </div>
+          <CourseSelector />
         </div>
 
         <!-- Right Column - Analysis -->
@@ -170,13 +168,6 @@ function getCategoryClass(category) {
   flex-shrink: 0;
 }
 
-.course-card {
-  flex: 1;
-  min-height: 0;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-}
 
 .card {
   background: var(--color-surface);
