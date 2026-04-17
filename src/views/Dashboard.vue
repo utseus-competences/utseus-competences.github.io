@@ -3,7 +3,7 @@
     <div class="container">
       <div class="dashboard-header">
         <h1>Dashboard</h1>
-        <p>Analyze your competency gaps and get course recommendations</p>
+        <p>Analyze your competency gaps and get course recommendations at UTSEUS</p>
       </div>
 
       <div class="dashboard-layout">

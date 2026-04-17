@@ -1,7 +1,7 @@
 <template>
   <div class="course-selector">
     <div class="selector-header">
-      <h3>Select Your Courses</h3>
+      <h3>Select UTSEUS Courses</h3>
       <div class="selector-actions">
         <button @click="selectAll" class="btn btn-secondary btn-sm">Select All</button>
         <button @click="clearAll" class="btn btn-secondary btn-sm">Clear</button>
