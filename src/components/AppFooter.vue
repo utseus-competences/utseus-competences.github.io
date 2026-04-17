@@ -18,6 +18,7 @@
       </div>
       <div class="footer-bottom">
         <p>UTSEUS - l'Université de Technologie Sino-Europenne - Université de Shanghai</p>
+        <p class="footer-address">Address: Building 6, No.333 Nanchen Road, Baoshan District, Shanghai     Tel: 86 21 66132817</p>
       </div>
     </div>
   </footer>
@@ -91,6 +92,11 @@
   color: var(--color-text-light);
   font-size: 0.8rem;
   margin: 0;
+}
+
+.footer-address {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
 }
 
 @media (max-width: 768px) {

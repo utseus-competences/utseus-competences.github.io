@@ -74,8 +74,8 @@
               <td class="center">{{ course.credits }}</td>
               <td v-for="bc in displayedBCs" :key="bc" class="center">
                 <span v-if="course.bcContribution[bc]" 
-                      :class="['bc-value', 'level-' + course.bcContribution[bc]]"
-                      :title="getBCDescription(bc)">
+                      :class="['bc-value', 'level-' + course.bcContribution[bc], 'tooltip']"
+                      :data-tooltip="bc + ': ' + getBCDescription(bc) + ' (Level ' + course.bcContribution[bc] + ')'">
                   {{ course.bcContribution[bc] }}
                 </span>
                 <span v-else class="bc-value empty">-</span>
@@ -121,7 +121,7 @@ const modules = computed(() => Object.values(store.competencies.modules))
 
 const displayedBCs = computed(() => {
   if (filters.value.bc === 'all') {
-    return ['BC1', 'BC2', 'BC3', 'BC4', 'BC5', 'BC6']
+    return ['BC1', 'BC2', 'BC3', 'BC4', 'BC5', 'BC6', 'BC7', 'BC8', 'BC9', 'BC10', 'BC11']
   }
   return [filters.value.bc]
 })
@@ -155,7 +155,7 @@ const filteredCourses = computed(() => {
 
 function getBCDescription(bcId) {
   const bc = store.competencies.bc[bcId]
-  return bc ? `${bc.name}` : bcId
+  return bc ? `${bc.name}: ${bc.description}` : bcId
 }
 </script>
 
