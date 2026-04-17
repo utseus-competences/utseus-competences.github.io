@@ -12,7 +12,7 @@
             <li><a href="https://www.utc.fr/" target="_blank">UTC</a></li>
             <li><a href="https://www.utt.fr/" target="_blank">UTT</a></li>
             <li><a href="https://www.utbm.fr/" target="_blank">UTBM</a></li>
-            <li><a href="https://www.francecompetences.fr/recherche/rncp/" target="_blank">RNCP</a></li>
+            <li><a href="https://www.francecompetences.fr/" target="_blank">RNCP</a></li>
           </ul>
         </div>
       </div>
