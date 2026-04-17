@@ -63,7 +63,7 @@
             <GapAnalysis />
           </div>
 
-          <div class="card" v-if="store.selectedCareer">
+          <div class="card recommendations-card" v-if="store.selectedCareer">
             <div class="card-title">Recommendations</div>
             <RecommendationPanel />
           </div>
@@ -266,6 +266,11 @@ function getCategoryClass(category) {
   font-size: 0.75rem;
   cursor: help;
   position: relative;
+}
+
+.recommendations-card {
+  background: linear-gradient(135deg, #f0f9f4 0%, #d4edda 100%);
+  border-left: 4px solid #27ae60;
 }
 
 @media (max-width: 1024px) {

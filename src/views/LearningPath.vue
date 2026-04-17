@@ -51,7 +51,7 @@
               <p v-if="step.nameCn" class="step-cn">{{ step.nameCn }}</p>
               <div class="step-meta">
                 <span class="credits">{{ step.credits }} credits</span>
-                <span class="level">{{ step.level }}</span>
+                <span class="level">{{ step.level === 'undergraduate' ? 'Undergraduate (B3/B4)' : 'Graduate (Master)' }}</span>
                 <span class="primary-bc tooltip" :data-tooltip="getBCDescription(step.primaryBC)">Focus: {{ step.primaryBC }}</span>
               </div>
               <p class="step-reason">
@@ -203,16 +203,16 @@ function addAllToPlan() {
 
 .path-timeline {
   position: relative;
-  padding-left: 2.5rem;
+  padding-left: 3.5rem;
 }
 
 .path-timeline::before {
   content: '';
   position: absolute;
-  left: 1rem;
+  left: 2rem;
   top: 0;
   bottom: 0;
-  width: 1px;
+  width: 2px;
   background: var(--color-border);
 }
 
@@ -223,12 +223,12 @@ function addAllToPlan() {
 
 .timeline-marker {
   position: absolute;
-  left: -1.75rem;
+  left: -2.5rem;
   top: 0;
   width: 2rem;
   height: 2rem;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -349,11 +349,15 @@ function addAllToPlan() {
   }
   
   .path-timeline {
-    padding-left: 2rem;
+    padding-left: 2.5rem;
+  }
+  
+  .path-timeline::before {
+    left: 1.25rem;
   }
   
   .timeline-marker {
-    left: -1.5rem;
+    left: -1.75rem;
     width: 1.75rem;
     height: 1.75rem;
     font-size: 0.75rem;

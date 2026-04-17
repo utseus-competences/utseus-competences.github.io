@@ -32,8 +32,9 @@
       <div 
         v-for="course in filteredCourses" 
         :key="course.id"
-        :class="['course-item', { selected: isSelected(course.id) }]"
+        :class="['course-item', 'tooltip', { selected: isSelected(course.id) }]"
         @click="toggleCourse(course.id)"
+        :data-tooltip="getCourseTooltip(course)"
       >
         <div class="course-checkbox">
           <input 
@@ -138,6 +139,16 @@ function getBCColor(bcId) {
 function getBCDescription(bcId) {
   const bc = store.competencies.bc[bcId]
   return bc ? `${bc.name}: ${bc.description}` : bcId
+}
+
+function getCourseTooltip(course) {
+  return Object.entries(course.bcContribution)
+    .filter(([_, value]) => value > 0)
+    .map(([bc, value]) => {
+      const bcName = store.competencies.bc[bc]?.name || bc
+      return `${bc}: ${bcName} (+${value})`
+    })
+    .join('\n')
 }
 </script>
 

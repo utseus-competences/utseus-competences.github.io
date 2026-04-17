@@ -3,7 +3,7 @@
     <div class="container">
       <div class="page-header">
         <h1>Career Explorer</h1>
-        <p>Explore engineering career paths and their competency requirements</p>
+        <p>Explore engineering career paths after obtaining your UTSEUS/UT master degree and their competency requirements</p>
       </div>
 
       <div class="careers-grid">
