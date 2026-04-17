@@ -184,22 +184,25 @@ function getCourseTooltip(course) {
 
 .level-tabs {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.5rem;
   margin-bottom: 0.75rem;
-  border-bottom: 1px solid var(--color-border-light);
-  padding-bottom: 0.5rem;
   flex-shrink: 0;
 }
 
 .tab-btn {
   padding: 0.375rem 0.75rem;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--color-text-light);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
   cursor: pointer;
   border-radius: var(--radius-sm);
   font-weight: 400;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+}
+
+.tab-btn:hover {
+  background: var(--color-bg);
+  border-color: var(--color-text-light);
 }
 
 .tab-btn.active {

@@ -22,6 +22,6 @@ import AppFooter from './components/AppFooter.vue'
 
 .main-content {
   flex: 1;
-  padding: 1rem 0 0.5rem;
+  padding: 1rem 0 0.125rem;
 }
 </style>

@@ -155,7 +155,7 @@ function getCategoryClass(category) {
   gap: 0.5rem;
   position: sticky;
   top: 0.5rem;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 30px);
 }
 
 .dashboard-main {

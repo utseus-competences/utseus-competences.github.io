@@ -3,7 +3,7 @@
     <div class="container">
       <div class="page-header">
         <h1>Learning Path</h1>
-        <p>Step-by-step course recommendations based on your career goal</p>
+        <p>Step-by-step course recommendations based on your career goal after obtaining UTSEUS/UT master degree</p>
       </div>
 
       <div v-if="!store.selectedCareer" class="empty-state">
