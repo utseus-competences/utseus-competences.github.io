@@ -3,7 +3,7 @@
     <div class="container">
       <div class="page-header">
         <h1>Course Explorer</h1>
-        <p>Browse all courses and their competency contributions</p>
+        <p>Browse all UTSEUS courses and their competency contributions</p>
       </div>
 
       <div class="filters">

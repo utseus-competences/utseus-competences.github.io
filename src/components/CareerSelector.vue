@@ -1,6 +1,6 @@
 <template>
   <div class="career-selector">
-    <label class="selector-label">Select Your Career Goal</label>
+    <label class="selector-label">Select Your Career Goal after UTSEUS/UT master degree</label>
     <select v-model="selectedId" @change="onCareerChange" class="career-dropdown">
       <option value="">-- Choose a career --</option>
       <optgroup v-for="(careers, category) in careersByCategory" :key="category" :label="category">
@@ -9,24 +9,6 @@
         </option>
       </optgroup>
     </select>
-    
-    <div v-if="selectedCareer" class="career-preview">
-      <div class="preview-header">
-        <h3>{{ selectedCareer.name }}</h3>
-        <span class="badge" :class="getCategoryClass(selectedCareer.category)">
-          {{ selectedCareer.category }}
-        </span>
-      </div>
-      <p class="preview-description">{{ selectedCareer.description }}</p>
-      <div class="core-focus">
-        <strong>Core Focus:</strong>
-        <div class="focus-tags">
-          <span v-for="bc in selectedCareer.coreFocus" :key="bc" class="focus-tag tooltip" :data-tooltip="getBCDescription(bc)">
-            {{ bc }} - {{ getBCName(bc) }}
-          </span>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -66,15 +48,6 @@ function onCareerChange() {
   emit('update:modelValue', selectedId.value)
   emit('change', selectedId.value)
   store.selectCareer(selectedCareer.value?.id || null)
-}
-
-function getBCName(bcId) {
-  return store.competencies.bc[bcId]?.shortDesc || bcId
-}
-
-function getBCDescription(bcId) {
-  const bc = store.competencies.bc[bcId]
-  return bc ? `${bc.name}: ${bc.description}` : bcId
 }
 
 function getCategoryClass(category) {
@@ -124,52 +97,4 @@ function getCategoryClass(category) {
   font-size: 0.9rem;
 }
 
-.career-preview {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-light);
-}
-
-.preview-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.preview-header h3 {
-  margin: 0;
-  color: var(--color-primary);
-  font-size: 1rem;
-}
-
-.preview-description {
-  color: var(--color-text-light);
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
-  font-size: 0.85rem;
-}
-
-.core-focus {
-  font-size: 0.85rem;
-}
-
-.focus-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-  margin-top: 0.375rem;
-}
-
-.focus-tag {
-  background: var(--color-primary);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  cursor: help;
-  position: relative;
-}
 </style>

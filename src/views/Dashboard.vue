@@ -22,6 +22,27 @@
         <!-- Right Column - Analysis -->
         <div class="dashboard-main">
           <div class="card" v-if="store.selectedCareer">
+            <div class="card-title">Career Details</div>
+            <div class="career-details">
+              <div class="career-details-header">
+                <h3>{{ store.selectedCareer.name }}</h3>
+                <span class="badge" :class="getCategoryClass(store.selectedCareer.category)">
+                  {{ store.selectedCareer.category }}
+                </span>
+              </div>
+              <p class="career-details-description">{{ store.selectedCareer.description }}</p>
+              <div class="career-details-focus">
+                <strong>Core Focus:</strong>
+                <div class="focus-tags">
+                  <span v-for="bc in store.selectedCareer.coreFocus" :key="bc" class="focus-tag tooltip" :data-tooltip="getBCDescription(bc)">
+                    {{ bc }} - {{ getBCName(bc) }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" v-if="store.selectedCareer">
             <div class="card-title">Competency Radar</div>
             <div class="radar-legend">
               <span class="legend-item target"><span class="dot"></span> Target</span>
@@ -66,6 +87,41 @@ const selectedCareer = computed({
   get: () => store.selectedCareerId || '',
   set: (val) => store.selectCareer(val || null)
 })
+
+function getBCName(bcId) {
+  return store.competencies.bc[bcId]?.shortDesc || bcId
+}
+
+function getBCDescription(bcId) {
+  const bc = store.competencies.bc[bcId]
+  return bc ? `${bc.name}: ${bc.description}` : bcId
+}
+
+function getCategoryClass(category) {
+  const map = {
+    'Artificial Intelligence': 'badge-m2',
+    'Robotics': 'badge-m1',
+    'CPS': 'badge-m1',
+    'Industrial Internet': 'badge-m1',
+    'Autonomous Systems': 'badge-m1',
+    'Manufacturing': 'badge-m3',
+    'Control Systems': 'badge-m1',
+    'Data Science': 'badge-m2',
+    'Signal Processing': 'badge-m1',
+    'Research': 'badge-m2',
+    'Mechatronics': 'badge-m1',
+    'Automation': 'badge-m3',
+    'Embedded Systems': 'badge-m1',
+    'Quality Engineering': 'badge-m4',
+    'Sustainability': 'badge-m4',
+    'Aerospace': 'badge-m1',
+    'Healthcare Technology': 'badge-m4',
+    'Product Management': 'badge-m3',
+    'Energy': 'badge-m4',
+    'Entrepreneurship': 'badge-m2'
+  }
+  return map[category] || 'badge-m1'
+}
 </script>
 
 <style scoped>
@@ -92,12 +148,16 @@ const selectedCareer = computed({
   display: grid;
   grid-template-columns: 380px 1fr;
   gap: 1.25rem;
+  align-items: start;
 }
 
 .dashboard-sidebar {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: sticky;
+  top: 0.5rem;
+  height: calc(100vh - 60px);
 }
 
 .dashboard-main {
@@ -167,17 +227,56 @@ const selectedCareer = computed({
   font-size: 0.9rem;
 }
 
+.career-details-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.career-details-header h3 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.career-details-description {
+  color: var(--color-text-light);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  font-size: 0.85rem;
+}
+
+.career-details-focus {
+  font-size: 0.85rem;
+}
+
+.focus-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.375rem;
+}
+
+.focus-tag {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  cursor: help;
+  position: relative;
+}
+
 @media (max-width: 1024px) {
   .dashboard-layout {
     grid-template-columns: 1fr;
   }
   
   .dashboard-sidebar {
-    max-height: none;
-  }
-  
-  .course-card {
-    max-height: 500px;
+    position: static;
+    height: auto;
+    max-height: 600px;
   }
 }
 </style>

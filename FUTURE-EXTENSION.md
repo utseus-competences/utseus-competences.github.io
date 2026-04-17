@@ -382,7 +382,7 @@ Extract all UI strings to translation files:
   },
   "dashboard": {
     "title": "Career Competency Dashboard",
-    "select_career": "Select Your Career Goal",
+    "select_career": "Select Your Career Goal after UTSEUS/UT master degree",
     "radar_title": "Competency Radar",
     "gap_title": "Gap Analysis",
     "recommendations_title": "Course Recommendations"
