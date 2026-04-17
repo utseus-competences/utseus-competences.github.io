@@ -9,7 +9,7 @@
       <div class="dashboard-layout">
         <!-- Left Column - Course Selection (Full Height) -->
         <div class="dashboard-sidebar">
-          <div class="card career-card">
+          <div :class="['card', 'career-card', { 'pulse-card': !store.selectedCareer }]">
             <div class="card-title">Career Goal</div>
             <CareerSelector v-model="selectedCareer" />
           </div>
@@ -166,6 +166,20 @@ function getCategoryClass(category) {
 
 .career-card {
   flex-shrink: 0;
+}
+
+.pulse-card {
+  animation: card-pulse 2s ease-in-out infinite;
+  border-color: var(--color-accent);
+}
+
+@keyframes card-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(52, 152, 219, 0);
+  }
 }
 
 

@@ -1,7 +1,7 @@
 <template>
   <div class="career-selector">
     <label class="selector-label">Select Your Career Goal after UTSEUS/UT master degree</label>
-    <select v-model="selectedId" @change="onCareerChange" class="career-dropdown">
+    <select v-model="selectedId" @change="onCareerChange" :class="['career-dropdown', { 'pulse-animation': !selectedId }]">
       <option value="">-- Choose a career --</option>
       <optgroup v-for="(careers, category) in careersByCategory" :key="category" :label="category">
         <option v-for="career in careers" :key="career.id" :value="career.id">
@@ -95,6 +95,30 @@ function getCategoryClass(category) {
   max-width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.career-dropdown:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.pulse-animation {
+  animation: pulse 1.5s ease-in-out infinite;
+  border-color: var(--color-accent);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+    border-color: var(--color-accent);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0);
+    border-color: var(--color-accent-light);
+  }
 }
 
 </style>
