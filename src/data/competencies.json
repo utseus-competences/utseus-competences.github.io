@@ -1,0 +1,129 @@
+{
+  "modules": {
+    "M1": {
+      "id": "M1",
+      "name": "CPS Engineering Capability",
+      "nameFr": "Capacité d'ingénierie CPS",
+      "description": "Ability to design, analyze and integrate complex systems combining software, hardware and environmental elements",
+      "color": "#3b82f6",
+      "icon": "cpu"
+    },
+    "M2": {
+      "id": "M2",
+      "name": "Research & Innovation Capability",
+      "nameFr": "Capacité de recherche et d'innovation",
+      "description": "Ability to conduct independent research including problem modeling, method selection, result analysis and knowledge output",
+      "color": "#8b5cf6",
+      "icon": "flask"
+    },
+    "M3": {
+      "id": "M3",
+      "name": "Engineering Practice & Professional Capability",
+      "nameFr": "Capacité de pratique et professionnelle",
+      "description": "Ability to undertake engineering tasks in real industrial environments, understand quality standards and implement projects",
+      "color": "#10b981",
+      "icon": "briefcase"
+    },
+    "M4": {
+      "id": "M4",
+      "name": "Communication, Language & Cross-cultural Collaboration",
+      "nameFr": "Communication et collaboration interculturelle",
+      "description": "Ability to communicate effectively in multilingual professional environments and collaborate in cross-cultural teams",
+      "color": "#f59e0b",
+      "icon": "users"
+    }
+  },
+  "bc": {
+    "BC1": {
+      "id": "BC1",
+      "name": "Data Analysis & System Behavior Understanding",
+      "nameFr": "Analyse de données",
+      "module": "M1",
+      "description": "Identify and analyze data for observing phenomena and system behavior",
+      "shortDesc": "Data analysis and observation"
+    },
+    "BC2": {
+      "id": "BC2",
+      "name": "System Integration & Interdisciplinary Knowledge",
+      "nameFr": "Intégration des systèmes",
+      "module": "M1",
+      "description": "Integrate knowledge related to systems (interdisciplinarity and systems approach)",
+      "shortDesc": "Systems integration",
+      "core": true
+    },
+    "BC3": {
+      "id": "BC3",
+      "name": "System Modeling & Problem Solving",
+      "nameFr": "Modélisation des systèmes",
+      "module": "M1",
+      "description": "Construct and solve general system problems through modeling",
+      "shortDesc": "System modeling",
+      "core": true
+    },
+    "BC4": {
+      "id": "BC4",
+      "name": "Multi-constraint System Optimization",
+      "nameFr": "Optimisation de systèmes",
+      "module": "M1",
+      "description": "Optimize mechatronic systems under multiple constraints",
+      "shortDesc": "System optimization"
+    },
+    "BC5": {
+      "id": "BC5",
+      "name": "Cross-system Interface Mastery",
+      "nameFr": "Interface de systèmes",
+      "module": "M1",
+      "description": "Master processes at the interface of systems of different natures",
+      "shortDesc": "System interfaces"
+    },
+    "BC6": {
+      "id": "BC6",
+      "name": "Innovation & High-level Exchange",
+      "nameFr": "Innovation",
+      "module": "M2",
+      "description": "Bring innovative contributions in high-level exchanges and complex contexts",
+      "shortDesc": "Innovation capability"
+    },
+    "BC7": {
+      "id": "BC7",
+      "name": "Research Responsibility & Academic Contribution",
+      "nameFr": "Responsabilité de recherche",
+      "module": "M2",
+      "description": "Take responsibility for contributing to professional knowledge and practices",
+      "shortDesc": "Research responsibility"
+    },
+    "BC8": {
+      "id": "BC8",
+      "name": "Social, Environmental & Economic Integration",
+      "nameFr": "Intégration sociale/environnementale",
+      "module": "M4",
+      "description": "Integrate social, environmental and economic issues into technical choices",
+      "shortDesc": "Social/environmental awareness"
+    },
+    "BC9": {
+      "id": "BC9",
+      "name": "Project Management",
+      "nameFr": "Gestion de projet",
+      "module": "M3",
+      "description": "Conduct a project including planning, budgeting, time management and design",
+      "shortDesc": "Project management"
+    },
+    "BC10": {
+      "id": "BC10",
+      "name": "Critical Thinking & Knowledge Awareness",
+      "nameFr": "Esprit critique",
+      "module": "M2",
+      "description": "Develop critical awareness of knowledge in a field and at interfaces",
+      "shortDesc": "Critical thinking",
+      "core": true
+    },
+    "BC11": {
+      "id": "BC11",
+      "name": "Societal & Environmental Responsibility",
+      "nameFr": "Responsabilité sociétale",
+      "module": "M4",
+      "description": "Act with societal and environmental responsibility",
+      "shortDesc": "Social responsibility"
+    }
+  }
+}

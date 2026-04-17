@@ -1,0 +1,971 @@
+[
+  {
+    "id": "machine_learning",
+    "name": "Machine Learning",
+    "nameCn": "机器学习",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2,
+      "BC10": 2,
+      "BC6": 1
+    }
+  },
+  {
+    "id": "ai_fundamentals",
+    "name": "Fundamentals and Frontier Technologies of AI",
+    "nameCn": "人工智能基础与前沿技术",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2,
+      "BC10": 2
+    }
+  },
+  {
+    "id": "artificial_intelligence",
+    "name": "Artificial Intelligence",
+    "nameCn": "人工智能",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2,
+      "BC6": 1
+    }
+  },
+  {
+    "id": "big_data_analysis",
+    "name": "Big Data Analysis and Mining",
+    "nameCn": "大数据分析与挖掘",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 3,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "data_engineering",
+    "name": "Data Engineering",
+    "nameCn": "数据工程",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC1": 3,
+      "BC5": 2,
+      "BC3": 1
+    }
+  },
+  {
+    "id": "cloud_computing",
+    "name": "Cloud Computing and Big Data Processing",
+    "nameCn": "云计算与大数据",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 2,
+      "BC5": 3
+    }
+  },
+  {
+    "id": "foundation_models",
+    "name": "Theory and Application of Foundation Models",
+    "nameCn": "基础模型理论与应用",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2,
+      "BC10": 2,
+      "BC6": 1
+    }
+  },
+  {
+    "id": "auto_ml",
+    "name": "Intelligent Optimization and AutoML",
+    "nameCn": "智能优化与自动化机器学习",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC4": 3,
+      "BC3": 2,
+      "BC10": 2
+    }
+  },
+  {
+    "id": "digital_image_processing",
+    "name": "Digital Image Processing",
+    "nameCn": "数字图像处理",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 2,
+      "BC3": 2,
+      "BC2": 1
+    }
+  },
+  {
+    "id": "speech_image_processing",
+    "name": "Speech Signal and Image Processing",
+    "nameCn": "语音信号与图像处理",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 2,
+      "BC3": 2
+    }
+  },
+  {
+    "id": "modern_signal_processing",
+    "name": "Modern Signal Processing Technology",
+    "nameCn": "现代信号处理技术",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2
+    }
+  },
+  {
+    "id": "pattern_recognition",
+    "name": "Pattern Recognition Technology and Applications",
+    "nameCn": "模式识别技术及其应用",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2
+    }
+  },
+  {
+    "id": "modern_control_theory",
+    "name": "Modern Control Theory",
+    "nameCn": "现代控制理论",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 2
+    }
+  },
+  {
+    "id": "optimal_control",
+    "name": "Optimal Control Technology",
+    "nameCn": "最优控制技术",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 3
+    }
+  },
+  {
+    "id": "system_modeling",
+    "name": "System Modeling and Optimization Techniques",
+    "nameCn": "系统建模与优化技术",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 2,
+      "BC2": 2
+    }
+  },
+  {
+    "id": "linear_system_theory",
+    "name": "Linear System Theory",
+    "nameCn": "线性系统理论",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 2,
+      "BC3": 3
+    }
+  },
+  {
+    "id": "robot_control",
+    "name": "Robot Control Technology",
+    "nameCn": "机器人控制技术",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 2,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "intelligent_perception",
+    "name": "Intelligent Perception and Autonomous Systems",
+    "nameCn": "智能感知与自主系统",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 2,
+      "BC5": 2,
+      "BC1": 1
+    }
+  },
+  {
+    "id": "computer_control",
+    "name": "Computer Control System & Computer Network",
+    "nameCn": "计算机控制系统与网络",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC5": 3,
+      "BC2": 2
+    }
+  },
+  {
+    "id": "industrial_internet",
+    "name": "Industrial Internet Technology",
+    "nameCn": "工业互联网技术",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC5": 3,
+      "BC9": 1
+    }
+  },
+  {
+    "id": "distributed_manufacturing",
+    "name": "Distributed Intelligent Manufacturing Technology",
+    "nameCn": "分布式智能制造技术",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC5": 3,
+      "BC9": 2
+    }
+  },
+  {
+    "id": "smart_factory",
+    "name": "Introduction to Smart Factory & Digital Manufacturing",
+    "nameCn": "智能工厂和数字化制造简介",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC2": 3,
+      "BC5": 3,
+      "BC9": 2
+    }
+  },
+  {
+    "id": "cps_intro",
+    "name": "Introduction to Cyber-Physical Systems (CPS)",
+    "nameCn": "信息物理系统（CPS）简介",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 2,
+      "BC5": 3
+    }
+  },
+  {
+    "id": "cps_modeling",
+    "name": "CPS Design: Modelling and Simulation Based Systems Engineering",
+    "nameCn": "CPS 高级机电系统的建模，仿真和控制",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 3,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "multi_agent",
+    "name": "Introduction to Multi-agent Systems for CPS",
+    "nameCn": "智能CPS的多代理系统",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 2,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "smart_sensors",
+    "name": "Smart Sensors and Actuators",
+    "nameCn": "智能传感器和执行器",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC5": 3,
+      "BC2": 2
+    }
+  },
+  {
+    "id": "lean_iot",
+    "name": "Lean Design and IoT Prototyping",
+    "nameCn": "先进精益设计和物联网原型设计",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC2": 3,
+      "BC9": 2,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "eco_design",
+    "name": "Eco-Design & CPS Lifecycle Management",
+    "nameCn": "生态设计和CPS生命周期管理",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC8": 3,
+      "BC11": 2,
+      "BC2": 2
+    }
+  },
+  {
+    "id": "aircraft_assembly",
+    "name": "Aircraft Assembly Integrated Test Technology",
+    "nameCn": "飞机总装集成测试技术",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC9": 2,
+      "BC3": 2
+    }
+  },
+  {
+    "id": "game_theory",
+    "name": "Game Theory in Engineering and Applications to Autonomous Systems",
+    "nameCn": "工程博弈论及自主无人系统应用",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 2,
+      "BC10": 2
+    }
+  },
+  {
+    "id": "high_dim_probability",
+    "name": "Advanced Theory: Graph Structures and High-Dimensional Probability",
+    "nameCn": "机器学习理论进阶：图论和概率论",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC10": 3,
+      "BC3": 2,
+      "BC1": 1
+    }
+  },
+  {
+    "id": "advanced_statistics",
+    "name": "Advanced Statistics for Engineers",
+    "nameCn": "高等数理统计",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2,
+      "BC10": 2
+    }
+  },
+  {
+    "id": "agile_data_analysis",
+    "name": "Agile Advanced Data Analysis for AI",
+    "nameCn": "AI先进敏捷数据分析",
+    "level": "graduate",
+    "credits": 6,
+    "bcContribution": {
+      "BC1": 3,
+      "BC3": 2,
+      "BC6": 1
+    }
+  },
+  {
+    "id": "health_management",
+    "name": "Intelligent Operations and Health Management",
+    "nameCn": "智能运维与健康管理",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 2,
+      "BC5": 2,
+      "BC3": 1
+    }
+  },
+  {
+    "id": "iohm",
+    "name": "Intelligent Operations and Health Management",
+    "nameCn": "智能运维与健康管理",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 2,
+      "BC5": 2,
+      "BC3": 1
+    }
+  },
+  {
+    "id": "academic_writing",
+    "name": "Academic English Writing",
+    "nameCn": "学术英语写作",
+    "level": "graduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC7": 3,
+      "BC6": 1
+    }
+  },
+  {
+    "id": "comprehensive_english",
+    "name": "Comprehensive Academic English (Master)",
+    "nameCn": "学术综合英语（硕士）",
+    "level": "graduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC7": 3
+    }
+  },
+  {
+    "id": "professional_french_1",
+    "name": "Professional French 1",
+    "nameCn": "专业法语1",
+    "level": "graduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC7": 3
+    }
+  },
+  {
+    "id": "professional_french_2",
+    "name": "Professional French 2",
+    "nameCn": "专业法语2",
+    "level": "graduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC7": 3
+    }
+  },
+  {
+    "id": "engineering_ethics",
+    "name": "Engineering Ethics and Academic Norms",
+    "nameCn": "工程伦理与学术规范",
+    "level": "graduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC8": 2,
+      "BC11": 3,
+      "BC10": 1
+    }
+  },
+  {
+    "id": "tech_society",
+    "name": "Between Technology and Society",
+    "nameCn": "技术与社会",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC8": 3,
+      "BC11": 2,
+      "BC10": 1
+    }
+  },
+  {
+    "id": "sustainable_engineering",
+    "name": "Sustainable Engineering and Green IT",
+    "nameCn": "可持续工程及绿色IT",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC8": 3,
+      "BC11": 3
+    }
+  },
+  {
+    "id": "innovation_methodology",
+    "name": "Innovation Methodology",
+    "nameCn": "创新方法学",
+    "level": "graduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC6": 2,
+      "BC9": 1
+    }
+  },
+  {
+    "id": "innovation_engineers",
+    "name": "Innovation for Engineers",
+    "nameCn": "工程师创新创业实战",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC6": 3,
+      "BC9": 2
+    }
+  },
+  {
+    "id": "professional_practice",
+    "name": "Professional Practice",
+    "nameCn": "专业实践",
+    "level": "graduate",
+    "credits": 5,
+    "bcContribution": {
+      "BC3": 2,
+      "BC6": 2,
+      "BC7": 2,
+      "BC9": 3,
+      "BC10": 1
+    }
+  },
+  {
+    "id": "hsk_chinese_a",
+    "name": "Chinese for the HSK A",
+    "nameCn": "HSK汉语教学A",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC7": 2
+    }
+  },
+  {
+    "id": "hsk_chinese_b",
+    "name": "Chinese for the HSK B",
+    "nameCn": "HSK汉语教学B",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC7": 2
+    }
+  },
+  {
+    "id": "general_chinese_a",
+    "name": "General Chinese A",
+    "nameCn": "综合汉语A",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC7": 2
+    }
+  },
+  {
+    "id": "general_chinese_b",
+    "name": "General Chinese B",
+    "nameCn": "综合汉语B",
+    "level": "graduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC7": 2
+    }
+  },
+  {
+    "id": "china_overview_a",
+    "name": "General Situation of China A",
+    "nameCn": "中国概况A",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC8": 2
+    }
+  },
+  {
+    "id": "china_overview_b",
+    "name": "General Situation of China B",
+    "nameCn": "中国概况B",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC8": 2
+    }
+  },
+  {
+    "id": "socialism_theory",
+    "name": "Theory and Practice of Socialism with Chinese Characteristics",
+    "nameCn": "新时代中国特色社会主义理论与实践",
+    "level": "graduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC8": 2,
+      "BC11": 2
+    }
+  },
+  {
+    "id": "dialectics_nature",
+    "name": "Introduction to Dialectics of Nature",
+    "nameCn": "自然辩证法概论",
+    "level": "graduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC10": 2,
+      "BC8": 1
+    }
+  },
+  {
+    "id": "marxism_methodology",
+    "name": "Marxism and Social Science Methodology",
+    "nameCn": "马克思主义与社会科学方法论",
+    "level": "graduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC10": 2
+    }
+  },
+  {
+    "id": "physical_education",
+    "name": "Public Physical Education",
+    "nameCn": "公共体育",
+    "level": "graduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC9": 1
+    }
+  },
+  {
+    "id": "numerical_analysis",
+    "name": "Numerical Analysis",
+    "nameCn": "数值分析",
+    "level": "undergraduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 2
+    }
+  },
+  {
+    "id": "operational_research",
+    "name": "Operational Research: Combinatorial Optimization",
+    "nameCn": "运筹学：优化组合",
+    "level": "undergraduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 3
+    }
+  },
+  {
+    "id": "real_analysis",
+    "name": "Introduction to Real Analysis and Measure Theory",
+    "nameCn": "实变函数与测度论基础",
+    "level": "undergraduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC3": 2,
+      "BC10": 3
+    }
+  },
+  {
+    "id": "functional_analysis",
+    "name": "Introduction to Functional Analysis",
+    "nameCn": "泛函分析基础",
+    "level": "undergraduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC3": 2,
+      "BC10": 3
+    }
+  },
+  {
+    "id": "automatic_control_1",
+    "name": "Principle of Automatic Control (1)",
+    "nameCn": "自动控制原理(1)",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 2
+    }
+  },
+  {
+    "id": "automatic_control_2",
+    "name": "Principle of Automatic Control (2)",
+    "nameCn": "自动控制原理(2)",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 3
+    }
+  },
+  {
+    "id": "engineering_control",
+    "name": "Principles of Engineering Control",
+    "nameCn": "工程控制原理",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 3,
+      "BC4": 2
+    }
+  },
+  {
+    "id": "mechanical_design_2",
+    "name": "Principles of Machinery and Machine Design (2)",
+    "nameCn": "机械原理与设计(2)",
+    "level": "undergraduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC2": 2,
+      "BC3": 3
+    }
+  },
+  {
+    "id": "mechanics_kinematics",
+    "name": "Kinematics and Dynamics of Mechanics",
+    "nameCn": "机械系统的运动学和动力学",
+    "level": "undergraduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC3": 3
+    }
+  },
+  {
+    "id": "mechanics_vibration",
+    "name": "Basis of Mechanical Vibration",
+    "nameCn": "机械振动基础",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 3
+    }
+  },
+  {
+    "id": "thermal_fluid",
+    "name": "Engineering of Thermal Fluid",
+    "nameCn": "热流体工程",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 2
+    }
+  },
+  {
+    "id": "materials_science_1",
+    "name": "Science of Engineering Materials (1)",
+    "nameCn": "工程材料学(1)",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 2,
+      "BC8": 1
+    }
+  },
+  {
+    "id": "materials_science_2",
+    "name": "Science of Engineering Materials (2)",
+    "nameCn": "工程材料学(2)",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 2,
+      "BC8": 1
+    }
+  },
+  {
+    "id": "cao_components",
+    "name": "CAO & Mechanical Components",
+    "nameCn": "CAO与机械元器件",
+    "level": "undergraduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC2": 3,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "mechanical_cad_cam",
+    "name": "CAD/CAM for Machinery",
+    "nameCn": "机械CAD/CAM",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "3d_modeling",
+    "name": "3D Modeling and Motion Simulation",
+    "nameCn": "三维建模与运动仿真",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 1
+    }
+  },
+  {
+    "id": "3d_engineering",
+    "name": "3D Engineering Design",
+    "nameCn": "3D工程设计",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 2
+    }
+  },
+  {
+    "id": "cnc_technology",
+    "name": "CNC Technology",
+    "nameCn": "数控技术",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC5": 2,
+      "BC9": 2
+    }
+  },
+  {
+    "id": "mechatronics_theory",
+    "name": "Theory of Mechatronic System",
+    "nameCn": "机电一体化原理",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC5": 3
+    }
+  },
+  {
+    "id": "mechatronics_simulation",
+    "name": "Simulation of Mechatronic Systems",
+    "nameCn": "机电一体化系统仿真",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 2,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "microcomputer",
+    "name": "Microcomputer Principles and Application",
+    "nameCn": "微机原理及应用",
+    "level": "undergraduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC2": 2,
+      "BC5": 3
+    }
+  },
+  {
+    "id": "machine_testing",
+    "name": "Machine Testing Technology",
+    "nameCn": "机械测试技术",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC1": 2,
+      "BC5": 2
+    }
+  },
+  {
+    "id": "electronic_lab",
+    "name": "Electrotechnical and Electronic Lab",
+    "nameCn": "电工与电子技术实验",
+    "level": "undergraduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC5": 2,
+      "BC9": 1
+    }
+  },
+  {
+    "id": "precision_design",
+    "name": "Design and Application of Precision",
+    "nameCn": "精度设计及应用",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC3": 2,
+      "BC4": 1
+    }
+  },
+  {
+    "id": "mechanics_practice",
+    "name": "Kinematics and Dynamics of Mechanics Practice",
+    "nameCn": "机械系统的运动学与动力学实践",
+    "level": "undergraduate",
+    "credits": 1,
+    "bcContribution": {
+      "BC3": 2,
+      "BC9": 1
+    }
+  },
+  {
+    "id": "project_management",
+    "name": "Project Management",
+    "nameCn": "项目管理",
+    "level": "undergraduate",
+    "credits": 3,
+    "bcContribution": {
+      "BC9": 3
+    }
+  },
+  {
+    "id": "quality_management",
+    "name": "Quality Management",
+    "nameCn": "质量管理",
+    "level": "undergraduate",
+    "credits": 2.5,
+    "bcContribution": {
+      "BC9": 3,
+      "BC8": 1
+    }
+  },
+  {
+    "id": "value_analysis",
+    "name": "Value Analysis and Functional Analysis",
+    "nameCn": "价值和作用分析",
+    "level": "undergraduate",
+    "credits": 4,
+    "bcContribution": {
+      "BC3": 2,
+      "BC4": 2,
+      "BC9": 2
+    }
+  },
+  {
+    "id": "urban_engineering",
+    "name": "Urban Engineering",
+    "nameCn": "城市工程",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC8": 2
+    }
+  },
+  {
+    "id": "robotics",
+    "name": "Robotics",
+    "nameCn": "机器人工学",
+    "level": "undergraduate",
+    "credits": 2,
+    "bcContribution": {
+      "BC2": 3,
+      "BC3": 2,
+      "BC6": 1
+    }
+  },
+  {
+    "id": "graduation_thesis",
+    "name": "Graduation Thesis (Project)",
+    "nameCn": "毕业论文(设计)",
+    "level": "undergraduate",
+    "credits": 10,
+    "bcContribution": {
+      "BC3": 2,
+      "BC6": 3,
+      "BC7": 3,
+      "BC9": 2,
+      "BC10": 2
+    }
+  }
+]
