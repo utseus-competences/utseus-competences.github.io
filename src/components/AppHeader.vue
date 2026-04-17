@@ -3,22 +3,18 @@
     <div class="container header-content">
       <div class="logo">
         <router-link to="/">
-          <h1>UTSEUS</h1>
-          <span class="logo-subtitle">Career Competency System</span>
+          <h1>UTSEUS Competences</h1>
         </router-link>
       </div>
       <nav class="nav">
         <router-link to="/" class="nav-link" :class="{ active: $route.path === '/' }">
-          Home
-        </router-link>
-        <router-link to="/careers" class="nav-link" :class="{ active: $route.path === '/careers' }">
-          Careers
+          Dashboard
         </router-link>
         <router-link to="/courses" class="nav-link" :class="{ active: $route.path === '/courses' }">
           Courses
         </router-link>
-        <router-link to="/dashboard" class="nav-link" :class="{ active: $route.path === '/dashboard' }">
-          Dashboard
+        <router-link to="/careers" class="nav-link" :class="{ active: $route.path === '/careers' }">
+          Careers
         </router-link>
         <router-link to="/path" class="nav-link" :class="{ active: $route.path === '/path' }">
           Learning Path
@@ -30,10 +26,10 @@
 
 <style scoped>
 .header {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: var(--color-primary);
   color: white;
-  padding: 1rem 0;
-  box-shadow: var(--shadow-md);
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .header-content {
@@ -45,35 +41,27 @@
 .logo a {
   color: white;
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
 }
 
 .logo h1 {
   margin: 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.logo-subtitle {
-  font-size: 0.75rem;
-  opacity: 0.9;
-  font-weight: 400;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .nav {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .nav-link {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
   transition: all 0.2s;
 }
 
@@ -84,18 +72,23 @@
 
 .nav-link.active {
   color: white;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 @media (max-width: 768px) {
   .header-content {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
   }
   
   .nav {
     flex-wrap: wrap;
     justify-content: center;
+  }
+  
+  .nav-link {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.85rem;
   }
 }
 </style>

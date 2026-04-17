@@ -1,7 +1,7 @@
 <template>
   <div class="gap-analysis">
     <div v-if="!store.selectedCareer" class="empty-state">
-      <p>Please select a career goal to see your gap analysis.</p>
+      <p>Select a career goal to see your gap analysis.</p>
     </div>
     
     <div v-else-if="!store.gapAnalysis" class="empty-state">
@@ -25,18 +25,17 @@
       </div>
       
       <div class="bc-breakdown">
-        <h4>Competency Breakdown</h4>
+        <h4>Competency Details</h4>
         <div class="bc-list">
           <div v-for="(data, bc) in store.gapAnalysis" :key="bc" 
                :class="['bc-item', data.status]">
             <div class="bc-header">
-              <span class="bc-name">{{ bc }} - {{ getBCName(bc) }}</span>
+              <span class="bc-name tooltip" :data-tooltip="getBCDescription(bc)">{{ bc }} - {{ getBCName(bc) }}</span>
               <span :class="['bc-status', data.status]">{{ data.status }}</span>
             </div>
             <div class="bc-bar">
               <div class="bar-track">
-                <div class="bar-current" :style="{ width: (data.current / 3 * 100) + '%' }"></div>
-                <div class="bar-target" :style="{ left: (data.target / 3 * 100) + '%' }"></div>
+                <div class="bar-current" :style="{ width: Math.min(100, (data.target > 0 ? data.current / data.target * 100 : 0)) + '%' }"></div>
               </div>
               <div class="bar-labels">
                 <span>Current: {{ data.current }}</span>
@@ -62,6 +61,11 @@ function getBCName(bcId) {
   return store.competencies.bc[bcId]?.shortDesc || bcId
 }
 
+function getBCDescription(bcId) {
+  const bc = store.competencies.bc[bcId]
+  return bc ? `${bc.name}: ${bc.description}` : bcId
+}
+
 function getStatusLabel(status) {
   const labels = {
     satisfied: 'Satisfied',
@@ -74,27 +78,28 @@ function getStatusLabel(status) {
 
 function getScoreGradient() {
   const percentage = store.matchPercentage
-  if (percentage >= 80) return 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-  if (percentage >= 60) return 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
-  return 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'
+  if (percentage >= 80) return '#27ae60'
+  if (percentage >= 60) return '#f39c12'
+  return '#c0392b'
 }
 </script>
 
 <style scoped>
 .gap-analysis {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .empty-state {
   text-align: center;
-  padding: 3rem;
+  padding: 2rem;
   color: var(--color-text-light);
+  font-size: 0.9rem;
 }
 
 .analysis-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .match-score {
@@ -103,72 +108,74 @@ function getScoreGradient() {
 }
 
 .score-circle {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: var(--shadow-md);
 }
 
 .score-value {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
 .score-label {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   opacity: 0.9;
 }
 
 .gap-summary {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .summary-item {
   text-align: center;
-  padding: 0.75rem;
-  border-radius: var(--radius-md);
-  background: #f8fafc;
+  padding: 0.625rem;
+  border-radius: var(--radius-sm);
+  background: #f8f9fa;
+  border: 1px solid var(--color-border-light);
 }
 
-.summary-item.satisfied { border-top: 3px solid var(--color-success); }
-.summary-item.minor { border-top: 3px solid var(--color-info); }
-.summary-item.important { border-top: 3px solid var(--color-warning); }
-.summary-item.critical { border-top: 3px solid var(--color-danger); }
+.summary-item.satisfied { border-top: 2px solid var(--color-success); }
+.summary-item.minor { border-top: 2px solid var(--color-info); }
+.summary-item.important { border-top: 2px solid var(--color-warning); }
+.summary-item.critical { border-top: 2px solid var(--color-danger); }
 
 .summary-count {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--color-text);
 }
 
 .summary-label {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--color-text-light);
+  text-transform: uppercase;
 }
 
 .bc-breakdown h4 {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
 }
 
 .bc-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.625rem;
 }
 
 .bc-item {
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  background: #f8fafc;
-  border-left: 4px solid transparent;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: #f8f9fa;
+  border-left: 3px solid transparent;
 }
 
 .bc-item.satisfied { border-left-color: var(--color-success); }
@@ -180,51 +187,52 @@ function getScoreGradient() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.375rem;
 }
 
 .bc-name {
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  cursor: help;
 }
 
 .bc-status {
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.35rem;
   border-radius: var(--radius-sm);
   text-transform: uppercase;
   font-weight: 600;
 }
 
-.bc-status.satisfied { background: rgba(16, 185, 129, 0.1); color: var(--color-success); }
-.bc-status.minor { background: rgba(59, 130, 246, 0.1); color: var(--color-info); }
-.bc-status.important { background: rgba(245, 158, 11, 0.1); color: var(--color-warning); }
-.bc-status.critical { background: rgba(239, 68, 68, 0.1); color: var(--color-danger); }
+.bc-status.satisfied { background: rgba(39, 174, 96, 0.1); color: var(--color-success); }
+.bc-status.minor { background: rgba(41, 128, 185, 0.1); color: var(--color-info); }
+.bc-status.important { background: rgba(243, 156, 18, 0.1); color: var(--color-warning); }
+.bc-status.critical { background: rgba(192, 57, 43, 0.1); color: var(--color-danger); }
 
 .bc-bar {
-  margin-top: 0.5rem;
+  margin-top: 0.375rem;
 }
 
 .bar-track {
   position: relative;
-  height: 8px;
-  background: #e2e8f0;
-  border-radius: 4px;
-  overflow: visible;
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .bar-current {
   height: 100%;
   background: var(--color-success);
-  border-radius: 4px;
+  border-radius: 3px;
   transition: width 0.3s ease;
 }
 
 .bar-target {
   position: absolute;
-  top: -4px;
-  width: 4px;
-  height: 16px;
+  top: -2px;
+  width: 3px;
+  height: 10px;
   background: var(--color-primary);
   border-radius: 2px;
   transform: translateX(-50%);
@@ -233,15 +241,15 @@ function getScoreGradient() {
 .bar-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-text-light);
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
 
 .bc-gap {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--color-danger);
-  margin-top: 0.5rem;
+  margin-top: 0.375rem;
   font-weight: 500;
 }
 

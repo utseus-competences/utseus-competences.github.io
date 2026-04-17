@@ -2,33 +2,32 @@
   <div class="dashboard">
     <div class="container">
       <div class="dashboard-header">
-        <h1>Career Competency Dashboard</h1>
-        <p>Analyze your skills and get personalized recommendations</p>
+        <h1>Dashboard</h1>
+        <p>Analyze your competency gaps and get course recommendations</p>
       </div>
 
-      <div class="dashboard-grid">
-        <!-- Left Column -->
-        <div class="dashboard-col">
-          <div class="card">
+      <div class="dashboard-layout">
+        <!-- Left Column - Course Selection (Full Height) -->
+        <div class="dashboard-sidebar">
+          <div class="card career-card">
             <div class="card-title">Career Goal</div>
             <CareerSelector v-model="selectedCareer" />
           </div>
 
-          <div class="card">
-            <div class="card-title">Course Selection</div>
+          <div class="card course-card">
             <CourseSelector />
           </div>
         </div>
 
-        <!-- Right Column -->
-        <div class="dashboard-col">
+        <!-- Right Column - Analysis -->
+        <div class="dashboard-main">
           <div class="card" v-if="store.selectedCareer">
             <div class="card-title">Competency Radar</div>
             <div class="radar-legend">
-              <span class="legend-item target"><span class="dot"></span> Target Career</span>
-              <span class="legend-item current"><span class="dot"></span> Your Current</span>
+              <span class="legend-item target"><span class="dot"></span> Target</span>
+              <span class="legend-item current"><span class="dot"></span> Current</span>
             </div>
-            <BCRadarChart :width="380" :height="380" />
+            <BCRadarChart :width="350" :height="350" />
           </div>
           
           <div class="card" v-else>
@@ -42,20 +41,19 @@
             <div class="card-title">Gap Analysis</div>
             <GapAnalysis />
           </div>
-        </div>
-      </div>
 
-      <!-- Recommendations Section -->
-      <div class="card recommendations-card" v-if="store.selectedCareer">
-        <div class="card-title">Course Recommendations</div>
-        <RecommendationPanel />
+          <div class="card" v-if="store.selectedCareer">
+            <div class="card-title">Recommendations</div>
+            <RecommendationPanel />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useAppStore } from '../stores/appStore'
 import CareerSelector from '../components/CareerSelector.vue'
 import CourseSelector from '../components/CourseSelector.vue'
@@ -76,43 +74,59 @@ const selectedCareer = computed({
 }
 
 .dashboard-header {
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .dashboard-header h1 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
 }
 
 .dashboard-header p {
   color: var(--color-text-light);
+  font-size: 0.9rem;
+  margin: 0;
 }
 
-.dashboard-grid {
+.dashboard-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: 380px 1fr;
+  gap: 1.25rem;
 }
 
-.dashboard-col {
+.dashboard-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
+}
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.career-card {
+  flex-shrink: 0;
+}
+
+.course-card {
+  flex: 1;
+  min-height: 0;
+  padding: 1rem;
 }
 
 .card {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid var(--color-border-light);
 }
 
 .card-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
   color: var(--color-text);
 }
 
@@ -120,43 +134,48 @@ const selectedCareer = computed({
   display: flex;
   justify-content: center;
   gap: 1.5rem;
-  margin-bottom: 1rem;
-  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.375rem;
 }
 
 .legend-item .dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 }
 
 .legend-item.target .dot {
-  background: #3b82f6;
+  background: #3498db;
 }
 
 .legend-item.current .dot {
-  background: #10b981;
+  background: #27ae60;
 }
 
 .empty-radar {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
   color: var(--color-text-light);
-}
-
-.recommendations-card {
-  margin-top: 1.5rem;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 1024px) {
-  .dashboard-grid {
+  .dashboard-layout {
     grid-template-columns: 1fr;
+  }
+  
+  .dashboard-sidebar {
+    max-height: none;
+  }
+  
+  .course-card {
+    max-height: 500px;
   }
 }
 </style>

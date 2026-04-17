@@ -21,7 +21,7 @@
       <div class="core-focus">
         <strong>Core Focus:</strong>
         <div class="focus-tags">
-          <span v-for="bc in selectedCareer.coreFocus" :key="bc" class="focus-tag">
+          <span v-for="bc in selectedCareer.coreFocus" :key="bc" class="focus-tag tooltip" :data-tooltip="getBCDescription(bc)">
             {{ bc }} - {{ getBCName(bc) }}
           </span>
         </div>
@@ -72,6 +72,11 @@ function getBCName(bcId) {
   return store.competencies.bc[bcId]?.shortDesc || bcId
 }
 
+function getBCDescription(bcId) {
+  const bc = store.competencies.bc[bcId]
+  return bc ? `${bc.name}: ${bc.description}` : bcId
+}
+
 function getCategoryClass(category) {
   const map = {
     'Artificial Intelligence': 'badge-m2',
@@ -106,60 +111,64 @@ function getCategoryClass(category) {
 
 .selector-label {
   display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-weight: 500;
+  margin-bottom: 0.375rem;
   color: var(--color-text);
+  font-size: 0.9rem;
 }
 
 .career-dropdown {
   width: 100%;
-  max-width: 500px;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  max-width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
 }
 
 .career-preview {
-  margin-top: 1.5rem;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
 }
 
 .preview-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .preview-header h3 {
   margin: 0;
   color: var(--color-primary);
+  font-size: 1rem;
 }
 
 .preview-description {
   color: var(--color-text-light);
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  font-size: 0.85rem;
 }
 
 .core-focus {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .focus-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 0.375rem;
+  margin-top: 0.375rem;
 }
 
 .focus-tag {
   background: var(--color-primary);
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  cursor: help;
 }
 </style>

@@ -15,8 +15,8 @@ export function calculateCurrentBC(selectedCourses, coursesData) {
     if (course && course.bcContribution) {
       Object.entries(course.bcContribution).forEach(([bc, value]) => {
         if (currentBC[bc] !== undefined) {
-          // Cap at 3 per BC (max level)
-          currentBC[bc] = Math.min(3, currentBC[bc] + value)
+          // Sum up contributions (no cap)
+          currentBC[bc] += value
         }
       })
     }
@@ -34,22 +34,28 @@ export function calculateGap(career, currentBC) {
   Object.keys(currentBC).forEach(bc => {
     const target = career.bcWeights[bc] || 0
     const current = currentBC[bc] || 0
+    const diff = target - current
     gap[bc] = {
       target,
       current,
-      diff: target - current,
-      status: getGapStatus(target - current, career.coreFocus?.includes(bc))
+      diff,
+      status: getGapStatus(diff, target, career.coreFocus?.includes(bc))
     }
   })
 
   return gap
 }
 
-// Determine gap status based on difference and whether it's a core focus
-function getGapStatus(diff, isCore) {
+// Determine gap status based on difference relative to target
+function getGapStatus(diff, target, isCore) {
   if (diff <= 0) return 'satisfied'
-  if (isCore && diff >= 2) return 'critical'
-  if (diff >= 2) return 'important'
+  if (target === 0) return 'satisfied'
+  
+  const percentageMissing = diff / target
+  
+  if (isCore && percentageMissing > 0.5) return 'critical'
+  if (percentageMissing > 0.7) return 'critical'
+  if (percentageMissing > 0.4) return 'important'
   return 'minor'
 }
 
@@ -58,7 +64,7 @@ export function generateRecommendations(gap, bcToCourses, coursesData, selectedC
   const recommendations = []
   const selectedSet = new Set(selectedCourses)
 
-  // Sort BCs by gap severity
+  // Sort BCs by gap severity and amount
   const bcPriority = Object.entries(gap)
     .filter(([_, data]) => data.diff > 0)
     .sort((a, b) => {
@@ -103,9 +109,9 @@ export function generateRecommendations(gap, bcToCourses, coursesData, selectedC
 // Generate human-readable explanation for recommendation
 function generateReason(bc, gapData, topCourse) {
   const reasons = {
-    critical: `Critical gap: Your target career requires high proficiency in ${bc}, but you currently lack sufficient coverage. "${topCourse.name}" is strongly recommended as it provides core competency in this area.`,
-    important: `Important improvement: Strengthening ${bc} will significantly improve your alignment with this career path. "${topCourse.name}" can help bridge this gap.`,
-    minor: `Suggested enhancement: Taking "${topCourse.name}" would further develop your ${bc} competency for this career.`
+    critical: `Critical gap: Your target career requires ${gapData.target} points in ${bc}, but you have ${gapData.current}. "${topCourse.name}" provides +${topCourse.bcContribution[bc]} points.`,
+    important: `Important improvement: You need ${gapData.diff} more points in ${bc} to reach the target of ${gapData.target}. "${topCourse.name}" contributes +${topCourse.bcContribution[bc]} points.`,
+    minor: `Suggested enhancement: Taking "${topCourse.name}" (+${topCourse.bcContribution[bc]} ${bc} points) would help reach the target of ${gapData.target}.`
   }
   return reasons[gapData.status] || reasons.minor
 }
@@ -140,7 +146,7 @@ export function generateLearningPath(recommendations) {
     })
   })
 
-  return path.slice(0, 10) // Limit to 10 steps
+  return path.slice(0, 15) // Limit to 15 steps
 }
 
 // Get status summary for display

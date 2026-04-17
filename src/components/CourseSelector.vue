@@ -44,7 +44,7 @@
           />
         </div>
         <div class="course-info">
-          <div class="course-name">{{ course.name }}</div>
+          <div class="course-name" :title="course.name">{{ course.name }}</div>
           <div v-if="course.nameCn" class="course-name-cn">{{ course.nameCn }}</div>
           <div class="course-meta">
             <span class="course-credits">{{ course.credits }} credits</span>
@@ -53,8 +53,9 @@
                 v-for="(value, bc) in course.bcContribution" 
                 :key="bc"
                 v-if="value > 0"
-                class="bc-tag"
-                :style="{ backgroundColor: getBCColor(bc), opacity: 0.2 + (value * 0.25) }"
+                class="bc-tag tooltip"
+                :data-tooltip="getBCDescription(bc)"
+                :style="{ backgroundColor: getBCColor(bc), opacity: 0.15 + (value * 0.25) }"
               >
                 {{ bc }}:{{ value }}
               </span>
@@ -133,25 +134,36 @@ function getBCColor(bcId) {
   const module = store.competencies.bc[bcId]?.module
   return store.competencies.modules[module]?.color || '#666'
 }
+
+function getBCDescription(bcId) {
+  const bc = store.competencies.bc[bcId]
+  return bc ? `${bc.name}: ${bc.description}` : bcId
+}
 </script>
 
 <style scoped>
 .course-selector {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid var(--color-border-light);
+  height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
 }
 
 .selector-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
+  flex-shrink: 0;
 }
 
 .selector-header h3 {
   margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .selector-actions {
@@ -160,43 +172,47 @@ function getBCColor(bcId) {
 }
 
 .btn-sm {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.85rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.8rem;
 }
 
 .level-tabs {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-light);
   padding-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
 .tab-btn {
-  padding: 0.5rem 1rem;
-  border: none;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid transparent;
   background: transparent;
   color: var(--color-text-light);
   cursor: pointer;
   border-radius: var(--radius-sm);
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 0.85rem;
 }
 
 .tab-btn.active {
   background: var(--color-primary);
   color: white;
+  border-color: var(--color-primary);
 }
 
 .search-box {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  flex-shrink: 0;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.625rem 1rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
 }
 
 .search-input:focus {
@@ -205,20 +221,21 @@ function getBCColor(bcId) {
 }
 
 .courses-list {
-  max-height: 400px;
+  flex: 1;
   overflow-y: auto;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  min-height: 0;
 }
 
 .course-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  border-bottom: 1px solid var(--color-border);
+  gap: 0.625rem;
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid var(--color-border-light);
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.1s;
 }
 
 .course-item:last-child {
@@ -226,42 +243,48 @@ function getBCColor(bcId) {
 }
 
 .course-item:hover {
-  background: #f8fafc;
+  background: #f8f9fa;
 }
 
 .course-item.selected {
-  background: #eff6ff;
+  background: #e8f4f8;
 }
 
 .course-checkbox {
-  padding-top: 0.25rem;
+  padding-top: 0.125rem;
 }
 
 .course-info {
   flex: 1;
+  min-width: 0;
 }
 
 .course-name {
   font-weight: 500;
   color: var(--color-text);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .course-name-cn {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-text-light);
-  margin-top: 0.25rem;
+  margin-top: 0.125rem;
 }
 
 .course-meta {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
+  gap: 0.75rem;
+  margin-top: 0.375rem;
+  font-size: 0.75rem;
 }
 
 .course-credits {
   color: var(--color-text-light);
+  white-space: nowrap;
 }
 
 .bc-contributions {
@@ -272,18 +295,21 @@ function getBCColor(bcId) {
 
 .bc-tag {
   padding: 0.125rem 0.375rem;
-  border-radius: 3px;
+  border-radius: 2px;
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text);
+  cursor: help;
 }
 
 .selection-summary {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-border);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-light);
   text-align: center;
   color: var(--color-text-light);
+  font-size: 0.85rem;
+  flex-shrink: 0;
 }
 
 .summary-detail {

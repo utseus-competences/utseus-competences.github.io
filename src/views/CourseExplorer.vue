@@ -51,7 +51,7 @@
               <th>Course Name</th>
               <th class="center">Level</th>
               <th class="center">Credits</th>
-              <th v-for="bc in displayedBCs" :key="bc" class="center bc-col">
+              <th v-for="bc in displayedBCs" :key="bc" class="center bc-col tooltip" :data-tooltip="getBCDescription(bc)">
                 {{ bc }}
               </th>
               <th class="center">Actions</th>
@@ -61,7 +61,7 @@
             <tr v-for="course in filteredCourses" :key="course.id" 
                 :class="{ selected: store.isCourseSelected(course.id) }">
               <td>
-                <div class="course-name-cell">
+                <div class="course-name-cell" :title="course.name">
                   <strong>{{ course.name }}</strong>
                   <span v-if="course.nameCn" class="course-name-cn">{{ course.nameCn }}</span>
                 </div>
@@ -74,7 +74,8 @@
               <td class="center">{{ course.credits }}</td>
               <td v-for="bc in displayedBCs" :key="bc" class="center">
                 <span v-if="course.bcContribution[bc]" 
-                      :class="['bc-value', 'level-' + course.bcContribution[bc]]">
+                      :class="['bc-value', 'level-' + course.bcContribution[bc]]"
+                      :title="getBCDescription(bc)">
                   {{ course.bcContribution[bc] }}
                 </span>
                 <span v-else class="bc-value empty">-</span>
@@ -120,7 +121,7 @@ const modules = computed(() => Object.values(store.competencies.modules))
 
 const displayedBCs = computed(() => {
   if (filters.value.bc === 'all') {
-    return ['BC1', 'BC2', 'BC3', 'BC4', 'BC5', 'BC6', 'BC7', 'BC8', 'BC9', 'BC10', 'BC11']
+    return ['BC1', 'BC2', 'BC3', 'BC4', 'BC5', 'BC6']
   }
   return [filters.value.bc]
 })
@@ -151,6 +152,11 @@ const filteredCourses = computed(() => {
 
   return courses
 })
+
+function getBCDescription(bcId) {
+  const bc = store.competencies.bc[bcId]
+  return bc ? `${bc.name}` : bcId
+}
 </script>
 
 <style scoped>
@@ -159,21 +165,24 @@ const filteredCourses = computed(() => {
 }
 
 .page-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .page-header h1 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
 }
 
 .page-header p {
   color: var(--color-text-light);
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .filters {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
   align-items: flex-end;
 }
@@ -181,11 +190,11 @@ const filteredCourses = computed(() => {
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
+  gap: 0.25rem;
 }
 
 .filter-group label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--color-text-light);
 }
@@ -198,44 +207,45 @@ const filteredCourses = computed(() => {
 .search-input {
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   width: 100%;
+  font-size: 0.9rem;
 }
 
 .courses-table-container {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
   overflow-x: auto;
 }
 
 .courses-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .courses-table th,
 .courses-table td {
-  padding: 0.875rem 1rem;
+  padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .courses-table th {
-  background: #f8fafc;
+  background: #f8f9fa;
   font-weight: 600;
   color: var(--color-text);
   white-space: nowrap;
+  font-size: 0.8rem;
 }
 
 .courses-table tbody tr:hover {
-  background: #f8fafc;
+  background: #f8f9fa;
 }
 
 .courses-table tbody tr.selected {
-  background: #eff6ff;
+  background: #e8f4f8;
 }
 
 .center {
@@ -243,34 +253,41 @@ const filteredCourses = computed(() => {
 }
 
 .bc-col {
-  min-width: 50px;
-  font-size: 0.8rem;
+  min-width: 45px;
+  cursor: help;
 }
 
 .course-name-cell {
   display: flex;
   flex-direction: column;
+  max-width: 300px;
+}
+
+.course-name-cell strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .course-name-cn {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--color-text-light);
 }
 
 .level-badge {
-  padding: 0.25rem 0.5rem;
+  padding: 0.15rem 0.4rem;
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 500;
 }
 
 .level-badge.undergraduate {
-  background: rgba(59, 130, 246, 0.1);
-  color: var(--color-primary);
+  background: rgba(41, 128, 185, 0.1);
+  color: var(--color-info);
 }
 
 .level-badge.graduate {
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(142, 68, 173, 0.1);
   color: var(--color-m2);
 }
 
@@ -278,30 +295,32 @@ const filteredCourses = computed(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
+  cursor: help;
 }
 
-.bc-value.level-1 { background: rgba(59, 130, 246, 0.2); color: var(--color-primary); }
-.bc-value.level-2 { background: rgba(59, 130, 246, 0.4); color: var(--color-primary-dark); }
-.bc-value.level-3 { background: rgba(59, 130, 246, 0.8); color: white; }
-.bc-value.empty { color: #cbd5e1; }
+.bc-value.level-1 { background: rgba(41, 128, 185, 0.15); color: var(--color-info); }
+.bc-value.level-2 { background: rgba(41, 128, 185, 0.35); color: var(--color-info); }
+.bc-value.level-3 { background: rgba(41, 128, 185, 0.7); color: white; }
+.bc-value.empty { color: #bdc3c7; }
 
 .summary-bar {
   margin-top: 1rem;
-  padding: 1rem;
+  padding: 0.75rem;
   background: var(--color-surface);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   color: var(--color-text-light);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--color-border-light);
 }
 
 .btn {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.85rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {

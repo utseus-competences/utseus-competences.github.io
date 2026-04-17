@@ -1,11 +1,9 @@
 <template>
   <div class="recommendation-panel">
-    <h3>Recommended Courses</h3>
-    
     <div v-if="store.recommendations.length === 0" class="empty-state">
       <p v-if="!store.selectedCareer">Select a career to get recommendations.</p>
-      <p v-else-if="store.matchPercentage >= 90">Great job! You have strong coverage for this career.</p>
-      <p v-else>Add some courses to see personalized recommendations.</p>
+      <p v-else-if="store.matchPercentage >= 90">Strong coverage for this career.</p>
+      <p v-else>Add courses to see personalized recommendations.</p>
     </div>
     
     <div v-else class="recommendations-list">
@@ -13,16 +11,17 @@
            :class="['recommendation-item', rec.status]">
         <div class="rec-header">
           <div class="rec-bc">
-            <span class="bc-label">{{ rec.bc }}</span>
+            <span class="bc-label tooltip" :data-tooltip="getBCDescription(rec.bc)">{{ rec.bc }}</span>
             <span class="gap-badge">Gap: {{ rec.gap }}</span>
           </div>
           <span :class="['status-badge', rec.status]">{{ rec.status }}</span>
-          </div>
+        </div>
         <p class="rec-reason">{{ rec.reason }}</p>
         <div class="rec-courses">
           <div v-for="course in rec.courses" :key="course.id" 
                :class="['rec-course', { selected: store.isCourseSelected(course.id) }]"
-               @click="store.toggleCourse(course.id)">
+               @click="store.toggleCourse(course.id)"
+               :title="course.name">
             <div class="course-checkbox">
               <input 
                 type="checkbox" 
@@ -46,37 +45,39 @@
 import { useAppStore } from '../stores/appStore'
 
 const store = useAppStore()
+
+function getBCDescription(bcId) {
+  const bc = store.competencies.bc[bcId]
+  return bc ? `${bc.name}: ${bc.description}` : bcId
+}
 </script>
 
 <style scoped>
 .recommendation-panel {
-  padding: 1rem;
-}
-
-.recommendation-panel h3 {
-  margin-bottom: 1rem;
+  padding: 0.5rem;
 }
 
 .empty-state {
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
   color: var(--color-text-light);
-  background: #f8fafc;
-  border-radius: var(--radius-md);
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
 }
 
 .recommendations-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .recommendation-item {
-  padding: 1.25rem;
-  border-radius: var(--radius-lg);
+  padding: 1rem;
+  border-radius: var(--radius-md);
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-left: 4px solid transparent;
+  border: 1px solid var(--color-border-light);
+  border-left: 3px solid transparent;
 }
 
 .recommendation-item.critical { border-left-color: var(--color-danger); }
@@ -87,74 +88,75 @@ const store = useAppStore()
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .rec-bc {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.625rem;
 }
 
 .bc-label {
   font-weight: 600;
   color: var(--color-text);
+  cursor: help;
 }
 
 .gap-badge {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  background: #fee2e2;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  background: rgba(192, 57, 43, 0.1);
   color: var(--color-danger);
   border-radius: var(--radius-sm);
   font-weight: 500;
 }
 
 .status-badge {
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.4rem;
   border-radius: var(--radius-sm);
   text-transform: uppercase;
   font-weight: 600;
 }
 
-.status-badge.critical { background: rgba(239, 68, 68, 0.1); color: var(--color-danger); }
-.status-badge.important { background: rgba(245, 158, 11, 0.1); color: var(--color-warning); }
-.status-badge.minor { background: rgba(59, 130, 246, 0.1); color: var(--color-info); }
+.status-badge.critical { background: rgba(192, 57, 43, 0.1); color: var(--color-danger); }
+.status-badge.important { background: rgba(243, 156, 18, 0.1); color: var(--color-warning); }
+.status-badge.minor { background: rgba(41, 128, 185, 0.1); color: var(--color-info); }
 
 .rec-reason {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-light);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   line-height: 1.5;
 }
 
 .rec-courses {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.375rem;
 }
 
 .rec-course {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.625rem 0.875rem;
-  background: #f8fafc;
-  border-radius: var(--radius-md);
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.1s;
   border: 1px solid transparent;
 }
 
 .rec-course:hover {
-  background: #f1f5f9;
+  background: #e9ecef;
   border-color: var(--color-border);
 }
 
 .rec-course.selected {
-  background: #dbeafe;
-  border-color: var(--color-primary);
+  background: #d4edda;
+  border-color: var(--color-success);
 }
 
 .course-checkbox {
@@ -167,16 +169,20 @@ const store = useAppStore()
   justify-content: space-between;
   flex: 1;
   gap: 1rem;
+  min-width: 0;
 }
 
 .course-name {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .course-contribution {
-  font-size: 0.8rem;
-  color: var(--color-primary);
+  font-size: 0.75rem;
+  color: var(--color-accent);
   font-weight: 500;
   white-space: nowrap;
 }

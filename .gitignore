@@ -6,7 +6,7 @@ MoreInfo.md
 node_modules
 .pnp
 .pnp.js
-
+prompts.txt
 # Build output
 dist
 dist-ssr

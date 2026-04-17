@@ -3,7 +3,7 @@
     <div class="container">
       <div class="page-header">
         <h1>Career Explorer</h1>
-        <p>Discover 20+ engineering career paths and their required competencies</p>
+        <p>Explore engineering career paths and their competency requirements</p>
       </div>
 
       <div class="careers-grid">
@@ -21,7 +21,7 @@
           <div class="career-focus">
             <strong>Core Focus:</strong>
             <div class="focus-badges">
-              <span v-for="bc in career.coreFocus.slice(0, 3)" :key="bc" class="focus-badge">
+              <span v-for="bc in career.coreFocus.slice(0, 3)" :key="bc" class="focus-badge tooltip" :data-tooltip="getBCDescription(bc)">
                 {{ bc }}
               </span>
             </div>
@@ -30,15 +30,15 @@
           <div class="career-weights">
             <div v-for="(weight, bc) in getTopWeights(career.bcWeights)" :key="bc" 
                  class="weight-item">
-              <span class="weight-bc">{{ bc }}</span>
+              <span class="weight-bc tooltip" :data-tooltip="getBCDescription(bc)">{{ bc }}</span>
               <div class="weight-bar">
-                <div class="weight-fill" :style="{ width: (weight / 3 * 100) + '%' }"></div>
+                <div class="weight-fill" :style="{ width: Math.min(100, weight / 12 * 100) + '%' }"></div>
               </div>
               <span class="weight-value">{{ weight }}</span>
             </div>
           </div>
           
-          <router-link to="/dashboard" class="btn btn-primary btn-block" @click.stop>
+          <router-link to="/" class="btn btn-primary btn-block" @click.stop>
             Select & Analyze
           </router-link>
         </div>
@@ -56,12 +56,12 @@ const router = useRouter()
 
 function selectCareer(careerId) {
   store.selectCareer(careerId)
-  router.push('/dashboard')
+  router.push('/')
 }
 
 function getTopWeights(weights) {
   return Object.entries(weights)
-    .filter(([_, val]) => val >= 2)
+    .filter(([_, val]) => val >= 6)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5)
     .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {})
@@ -92,6 +92,11 @@ function getCategoryClass(category) {
   }
   return map[category] || 'm1'
 }
+
+function getBCDescription(bcId) {
+  const bc = store.competencies.bc[bcId]
+  return bc ? `${bc.name}: ${bc.description}` : bcId
+}
 </script>
 
 <style scoped>
@@ -100,42 +105,43 @@ function getCategoryClass(category) {
 }
 
 .page-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .page-header h1 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
 }
 
 .page-header p {
   color: var(--color-text-light);
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .careers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
 }
 
 .career-card {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  border: 2px solid var(--color-border);
-  transition: all 0.2s;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid var(--color-border-light);
+  transition: all 0.15s;
   cursor: pointer;
 }
 
 .career-card:hover {
   border-color: var(--color-primary);
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
 }
 
 .career-card.selected {
   border-color: var(--color-primary);
-  background: #eff6ff;
+  background: #f8f9fa;
 }
 
 .career-header {
@@ -143,38 +149,40 @@ function getCategoryClass(category) {
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.625rem;
 }
 
 .career-header h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--color-primary);
 }
 
 .category-badge {
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.4rem;
   border-radius: var(--radius-sm);
-  font-weight: 600;
+  font-weight: 500;
   white-space: nowrap;
+  border: 1px solid transparent;
 }
 
-.category-badge.m1 { background: rgba(59, 130, 246, 0.1); color: var(--color-m1); }
-.category-badge.m2 { background: rgba(139, 92, 246, 0.1); color: var(--color-m2); }
-.category-badge.m3 { background: rgba(16, 185, 129, 0.1); color: var(--color-m3); }
-.category-badge.m4 { background: rgba(245, 158, 11, 0.1); color: var(--color-m4); }
+.category-badge.m1 { background: rgba(44, 62, 80, 0.08); color: var(--color-m1); border-color: rgba(44, 62, 80, 0.2); }
+.category-badge.m2 { background: rgba(142, 68, 173, 0.08); color: var(--color-m2); border-color: rgba(142, 68, 173, 0.2); }
+.category-badge.m3 { background: rgba(22, 160, 133, 0.08); color: var(--color-m3); border-color: rgba(22, 160, 133, 0.2); }
+.category-badge.m4 { background: rgba(211, 84, 0, 0.08); color: var(--color-m4); border-color: rgba(211, 84, 0, 0.2); }
 
 .career-description {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-light);
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
   line-height: 1.5;
 }
 
 .career-focus {
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.875rem;
 }
 
 .focus-badges {
@@ -187,21 +195,22 @@ function getCategoryClass(category) {
 .focus-badge {
   background: var(--color-primary);
   color: white;
-  padding: 0.25rem 0.5rem;
+  padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 500;
+  cursor: help;
 }
 
 .career-weights {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .weight-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  gap: 0.625rem;
+  margin-bottom: 0.375rem;
   font-size: 0.8rem;
 }
 
@@ -209,12 +218,13 @@ function getCategoryClass(category) {
   width: 35px;
   font-weight: 500;
   color: var(--color-text);
+  cursor: help;
 }
 
 .weight-bar {
   flex: 1;
-  height: 6px;
-  background: #e2e8f0;
+  height: 5px;
+  background: #e9ecef;
   border-radius: 3px;
   overflow: hidden;
 }
@@ -226,13 +236,16 @@ function getCategoryClass(category) {
 }
 
 .weight-value {
-  width: 20px;
+  width: 24px;
   text-align: right;
   color: var(--color-text-light);
+  font-size: 0.75rem;
 }
 
 .btn-block {
   width: 100%;
   text-align: center;
+  font-size: 0.85rem;
+  padding: 0.5rem;
 }
 </style>
