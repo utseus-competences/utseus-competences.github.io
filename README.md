@@ -163,4 +163,4 @@ This project is maintained by UTSEUS. For questions or suggestions, please open 
 
 ## 📄 License
 
-MIT License - Copyright (c) 2024 UTSEUS
+MIT License - Copyright (c) 2026 UTSEUS
