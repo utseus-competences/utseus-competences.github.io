@@ -275,9 +275,7 @@ function getCourseTooltip(course) {
   font-weight: 500;
   color: var(--color-text);
   font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
 .course-name-cn {

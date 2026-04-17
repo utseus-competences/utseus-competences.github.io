@@ -20,10 +20,11 @@
         </div>
         <p class="rec-reason">{{ rec.reason }}</p>
         <div class="rec-courses">
-          <div v-for="course in rec.courses" :key="course.id" 
+          <div v-for="course in rec.courses" :key="course.id"
                :class="['rec-course', { selected: store.isCourseSelected(course.id) }]"
                @click="store.toggleCourse(course.id)"
-               :title="course.name">
+               @mouseenter="(e) => showTooltip(e.target, getCourseTooltip(course, rec.bc))"
+               @mouseleave="hideTooltip">
             <div class="course-checkbox">
               <input 
                 type="checkbox" 
@@ -53,6 +54,11 @@ const store = useAppStore()
 function getBCDescription(bcId) {
   const bc = store.competencies.bc[bcId]
   return bc ? `${bc.name}: ${bc.description}` : bcId
+}
+
+function getCourseTooltip(course, bcId) {
+  const bcName = store.competencies.bc[bcId]?.name || bcId
+  return `${course.name}\n${bcId}: ${bcName} (+${course.contributionToBC})`
 }
 </script>
 
@@ -179,9 +185,6 @@ function getBCDescription(bcId) {
 .course-name {
   font-size: 0.85rem;
   color: var(--color-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .course-contribution {
