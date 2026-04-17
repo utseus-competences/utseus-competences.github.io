@@ -234,10 +234,10 @@ select:focus {
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
   padding: 0.5rem 0.75rem;
-  background: var(--color-text);
+  background: rgba(44, 62, 80, 0.95);
   color: white;
   font-size: 0.8rem;
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;

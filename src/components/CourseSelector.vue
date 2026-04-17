@@ -84,8 +84,8 @@ const searchQuery = ref('')
 
 const levels = [
   { value: 'all', label: 'All Courses' },
-  { value: 'undergraduate', label: 'Undergraduate' },
-  { value: 'graduate', label: 'Graduate' }
+  { value: 'undergraduate', label: 'Undergraduate (B3/B4)' },
+  { value: 'graduate', label: 'Graduate (Master)' }
 ]
 
 const filteredCourses = computed(() => {
@@ -147,7 +147,7 @@ function getBCDescription(bcId) {
   border-radius: var(--radius-md);
   padding: 1.25rem;
   border: 1px solid var(--color-border-light);
-  height: calc(100vh - 200px);
+  height: calc(100vh - 150px);
   display: flex;
   flex-direction: column;
 }

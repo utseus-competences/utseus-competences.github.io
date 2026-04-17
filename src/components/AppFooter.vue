@@ -7,13 +7,15 @@
           <p>l'Université de Technologie Sino-Europenne<br>Université de Shanghai</p>
         </div>
         <div class="footer-section">
-          <h4>Partenaires</h4>
-          <ul>
-            <li><a href="https://www.utc.fr/" target="_blank">UTC</a></li>
-            <li><a href="https://www.utt.fr/" target="_blank">UTT</a></li>
-            <li><a href="https://www.utbm.fr/" target="_blank">UTBM</a></li>
-            <li><a href="https://www.francecompetences.fr/" target="_blank">RNCP</a></li>
-          </ul>
+          <div class="institutions-links">
+            <a href="https://www.utc.fr/" target="_blank">UTC</a>
+            <span class="separator">•</span>
+            <a href="https://www.utt.fr/" target="_blank">UTT</a>
+            <span class="separator">•</span>
+            <a href="https://www.utbm.fr/" target="_blank">UTBM</a>
+            <span class="separator">•</span>
+            <a href="https://www.francecompetences.fr/" target="_blank">RNCP</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -53,19 +55,26 @@
   margin: 0;
 }
 
-.footer-section ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.institutions-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.footer-section li {
-  margin-bottom: 0.375rem;
-}
-
-.footer-section a {
+.institutions-links a {
   color: var(--color-text-light);
   text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.institutions-links a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.separator {
+  color: var(--color-border);
   font-size: 0.85rem;
 }
 
