@@ -81,15 +81,19 @@
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .nav {
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
-  
+
   .nav-link {
-    padding: 0.375rem 0.75rem;
+    padding: 0.5rem 0.5rem;
     font-size: 0.85rem;
+    flex: 1 1 auto;
+    min-width: 80px;
+    text-align: center;
   }
 }
 </style>
