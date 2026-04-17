@@ -28,13 +28,13 @@
           </div>
           
           <div class="career-weights">
-            <div v-for="(weight, bc) in getTopWeights(career.bcWeights)" :key="bc" 
+            <div v-for="bc in bcList" :key="bc"
                  class="weight-item">
               <span class="weight-bc tooltip" :data-tooltip="getBCDescription(bc)">{{ bc }}</span>
               <div class="weight-bar">
-                <div class="weight-fill" :style="{ width: Math.min(100, weight / 12 * 100) + '%' }"></div>
+                <div class="weight-fill" :style="{ width: Math.min(100, (career.bcWeights[bc] || 0) / 12 * 100) + '%' }"></div>
               </div>
-              <span class="weight-value">{{ weight }}</span>
+              <span class="weight-value">{{ career.bcWeights[bc] || 0 }}</span>
             </div>
           </div>
           
@@ -59,13 +59,7 @@ function selectCareer(careerId) {
   router.push('/')
 }
 
-function getTopWeights(weights) {
-  return Object.entries(weights)
-    .filter(([_, val]) => val >= 6)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5)
-    .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {})
-}
+const bcList = ['BC1', 'BC2', 'BC3', 'BC4', 'BC5', 'BC6', 'BC7', 'BC8', 'BC9', 'BC10', 'BC11']
 
 function getCategoryClass(category) {
   const map = {
