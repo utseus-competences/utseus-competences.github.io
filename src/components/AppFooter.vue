@@ -4,7 +4,7 @@
       <div class="footer-content">
         <div class="footer-section">
           <h3>UTSEUS</h3>
-          <p>l'Universit de Technologie Sino-Europenne<br>Universit de Shanghai</p>
+          <p>l'Université de Technologie Sino-Europenne<br>Université de Shanghai</p>
         </div>
         <div class="footer-section">
           <h4>Partenaires</h4>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>UTSEUS - l'Universit de Technologie Sino-Europenne - Universit de Shanghai</p>
+        <p>UTSEUS - l'Université de Technologie Sino-Europenne - Université de Shanghai</p>
       </div>
     </div>
   </footer>
