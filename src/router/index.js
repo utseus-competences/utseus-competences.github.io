@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import CourseExplorer from '../views/CourseExplorer.vue'
 import CareerExplorer from '../views/CareerExplorer.vue'
@@ -28,7 +28,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/utseus-competences.github.io/'),
+  history: createWebHashHistory(),
   routes
 })
 
