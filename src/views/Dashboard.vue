@@ -154,7 +154,7 @@ function getCategoryClass(category) {
 .dashboard-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   position: sticky;
   top: 0.5rem;
   height: calc(100vh - 60px);
@@ -173,7 +173,7 @@ function getCategoryClass(category) {
 .course-card {
   flex: 1;
   min-height: 0;
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
 }

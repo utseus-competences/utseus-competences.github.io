@@ -65,13 +65,6 @@
         </div>
       </div>
     </div>
-    
-    <div class="selection-summary">
-      <strong>{{ store.selectedCourses.length }}</strong> courses selected
-      <span v-if="store.selectedCourses.length > 0" class="summary-detail">
-        (Total: {{ totalCredits }} credits)
-      </span>
-    </div>
   </div>
 </template>
 
@@ -156,7 +149,7 @@ function getCourseTooltip(course) {
 .course-selector {
   background: var(--color-surface);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
+  padding: 0.75rem;
   border: 1px solid var(--color-border-light);
   display: flex;
   flex-direction: column;
@@ -315,17 +308,4 @@ function getCourseTooltip(course) {
   cursor: help;
 }
 
-.selection-summary {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--color-border-light);
-  text-align: center;
-  color: var(--color-text-light);
-  font-size: 0.85rem;
-  flex-shrink: 0;
-}
-
-.summary-detail {
-  margin-left: 0.5rem;
-}
 </style>
