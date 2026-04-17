@@ -79,15 +79,17 @@ The repository is configured with GitHub Actions for automatic deployment:
 │   │   └── bcToCourses.json   # Reverse index
 │   ├── stores/
 │   │   └── appStore.js     # Pinia state management
+│   ├── composables/
+│   │   └── useTooltip.js   # Tooltip directive composable
 │   ├── views/
-│   │   ├── Home.vue
-│   │   ├── Dashboard.vue
+│   │   ├── Dashboard.vue    # Main analysis page (home)
 │   │   ├── CourseExplorer.vue
 │   │   ├── CareerExplorer.vue
 │   │   └── LearningPath.vue
+│   ├── router/
+│   │   └── index.js        # Vue Router configuration
 │   ├── App.vue
 │   ├── main.js
-│   ├── router.js
 │   └── style.css
 ├── index.html
 ├── package.json
@@ -140,7 +142,7 @@ The repository is configured with GitHub Actions for automatic deployment:
 - **State Management**: Pinia
 - **Routing**: Vue Router
 - **Styling**: CSS Variables + Scoped Styles
-- **Charts**: Canvas API (custom radar chart)
+- **Charts**: Chart.js with vue-chartjs
 - **Deployment**: GitHub Pages
 
 ## 📝 Features

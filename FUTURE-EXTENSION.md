@@ -76,7 +76,7 @@ Machine Learning: {
 | State | Pinia | Global state management |
 | Routing | Vue Router | SPA navigation |
 | Build | Vite | Fast development & bundling |
-| Charts | Canvas API | Custom radar chart (no heavy lib) |
+| Charts | Chart.js + vue-chartjs | Radar chart visualization |
 | Deploy | GitHub Pages | Static hosting |
 
 ### Why These Choices?
@@ -84,7 +84,7 @@ Machine Learning: {
 1. **Vue 3 (not React)**: Lighter weight, better for static sites, easier for future maintainers
 2. **Pinia (not Vuex)**: Official recommendation, simpler API, better TypeScript support
 3. **No UI Framework**: Custom CSS allows precise UTSEUS branding control
-4. **Canvas (not Chart.js)**: Only need radar chart; custom implementation is lighter
+4. **Chart.js**: Provides radar chart with good customization and smaller bundle than full charting libraries
 
 ### Core Engine: `src/core/gapEngine.js`
 
@@ -500,7 +500,7 @@ src/
 │   ├── AppFooter.vue     # Footer
 │   ├── CareerSelector.vue
 │   ├── CourseSelector.vue
-│   ├── BCRadarChart.vue  # Custom canvas chart
+│   ├── BCRadarChart.vue  # Chart.js radar chart
 │   ├── GapAnalysis.vue   # Gap display component
 │   └── RecommendationPanel.vue
 │
@@ -516,9 +516,11 @@ src/
 ├── stores/               # State management
 │   └── appStore.js       # Pinia store with computed getters
 │
+├── composables/          # Shared logic
+│   └── useTooltip.js     # Tooltip directive
+│
 ├── views/                # Page-level components
-│   ├── Home.vue          # Landing page
-│   ├── Dashboard.vue     # Main analysis page
+│   ├── Dashboard.vue     # Main analysis page (home)
 │   ├── CourseExplorer.vue
 │   ├── CareerExplorer.vue
 │   └── LearningPath.vue
@@ -529,9 +531,6 @@ src/
 │       ├── en.json
 │       ├── fr.json
 │       └── zh.json
-│
-├── composables/          # [FUTURE] Shared logic
-│   └── useTranslation.js
 │
 ├── router/
 │   └── index.js          # Vue Router configuration
@@ -551,7 +550,7 @@ src/
 | No TypeScript | Keep it simple for future maintainers; add later if needed |
 | Pinia (not Vuex) | Official recommendation, simpler API |
 | No UI library | Full control over UTSEUS branding |
-| Canvas (not Chart.js) | Only need radar chart; custom = lighter |
+| Chart.js | Provides radar chart with good customization |
 | JSON files (not DB) | Static hosting on GitHub Pages; no backend needed |
 | GitHub Pages | Free, integrated with repo, automatic deploys |
 
@@ -567,5 +566,5 @@ src/
 
 ---
 
-**Last Updated**: April 2024
+**Last Updated**: April 2026
 **Next Review**: When adding multi-language UI or backend features
