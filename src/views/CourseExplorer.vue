@@ -48,11 +48,11 @@
         <table class="courses-table">
           <thead>
             <tr>
-              <th>Course Name</th>
-              <th class="center">Level</th>
-              <th class="center">Credits</th>
-              <th v-for="bc in displayedBCs" :key="bc" class="center bc-col tooltip" :data-tooltip="getBCDescription(bc)">
-                {{ bc }}
+              <th @click="handleSort('name')" class="sortable">Course Name{{ getSortIndicator('name') }}</th>
+              <th @click="handleSort('level')" class="center sortable">Level{{ getSortIndicator('level') }}</th>
+              <th @click="handleSort('credits')" class="center sortable">Credits{{ getSortIndicator('credits') }}</th>
+              <th v-for="bc in displayedBCs" :key="bc" @click="handleSort(bc)" class="center bc-col tooltip sortable" :data-tooltip="getBCDescription(bc)">
+                {{ bc }}{{ getSortIndicator(bc) }}
               </th>
               <th class="center">Actions</th>
             </tr>
@@ -67,7 +67,7 @@
                 </div>
               </td>
               <td class="center">
-                <span :class="['level-badge', course.level]">
+                <span :class="['level-badge', course.level, 'tooltip']" :data-tooltip="course.level === 'undergraduate' ? 'Undergraduate (B3/B4)' : 'Graduate (Master)'">
                   {{ course.level === 'undergraduate' ? 'UG' : 'GR' }}
                 </span>
               </td>
@@ -116,6 +116,11 @@ const filters = ref({
   search: ''
 })
 
+const sortConfig = ref({
+  key: null,
+  direction: 'asc'
+})
+
 const bcList = computed(() => Object.values(store.competencies.bc))
 const modules = computed(() => Object.values(store.competencies.modules))
 
@@ -150,12 +155,46 @@ const filteredCourses = computed(() => {
     )
   }
 
+  // Apply sorting
+  if (sortConfig.value.key) {
+    courses.sort((a, b) => {
+      let valA = a[sortConfig.value.key]
+      let valB = b[sortConfig.value.key]
+      
+      // Handle BC columns
+      if (sortConfig.value.key.startsWith('BC')) {
+        valA = a.bcContribution[sortConfig.value.key] || 0
+        valB = b.bcContribution[sortConfig.value.key] || 0
+      }
+      
+      if (valA < valB) return sortConfig.value.direction === 'asc' ? -1 : 1
+      if (valA > valB) return sortConfig.value.direction === 'asc' ? 1 : -1
+      return 0
+    })
+  }
+
   return courses
 })
 
 function getBCDescription(bcId) {
   const bc = store.competencies.bc[bcId]
   return bc ? `${bc.name}: ${bc.description}` : bcId
+}
+
+function handleSort(key) {
+  if (sortConfig.value.key === key) {
+    // Toggle direction if same key
+    sortConfig.value.direction = sortConfig.value.direction === 'asc' ? 'desc' : 'asc'
+  } else {
+    // New key, default to ascending
+    sortConfig.value.key = key
+    sortConfig.value.direction = 'asc'
+  }
+}
+
+function getSortIndicator(key) {
+  if (sortConfig.value.key !== key) return ''
+  return sortConfig.value.direction === 'asc' ? ' ↑' : ' ↓'
 }
 </script>
 
@@ -264,9 +303,8 @@ function getBCDescription(bcId) {
 }
 
 .course-name-cell strong {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .course-name-cn {
@@ -279,6 +317,16 @@ function getBCDescription(bcId) {
   border-radius: var(--radius-sm);
   font-size: 0.7rem;
   font-weight: 500;
+  cursor: help;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortable:hover {
+  background: #e9ecef;
 }
 
 .level-badge.undergraduate {
