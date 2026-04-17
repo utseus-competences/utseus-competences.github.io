@@ -147,9 +147,11 @@ function getBCDescription(bcId) {
   border-radius: var(--radius-md);
   padding: 1.25rem;
   border: 1px solid var(--color-border-light);
-  height: calc(100vh - 150px);
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
 }
 
 .selector-header {

@@ -170,5 +170,6 @@ function getCategoryClass(category) {
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   cursor: help;
+  position: relative;
 }
 </style>
